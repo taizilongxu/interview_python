@@ -2,7 +2,7 @@
 
 目前面了4家python的公司,基本都是很基础的东西,对比发现和stackoverflow上高票数的问题有很多重复,整理一下希望对别人有帮助.
 
-其中有可能是自己想到的一些知识点,也有一些是网上收集的.
+其中有可能是自己想到的一些知识点,也有一些是网上收集的.答案可能不太详尽,有需要还是自己搜一下吧.
 
 # Python语言特性
 
@@ -271,6 +271,7 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 
 ## 14 新式类和旧式类
 
+这个面试官问了,我说了老半天,不知道他问的真正意图是什么.
 
 [stackoverflow](http://stackoverflow.com/questions/54867/what-is-the-difference-between-old-style-and-new-style-classes-in-python)
 
@@ -293,6 +294,42 @@ ps: `__metaclass__`是创建类时起作用.所以我们可以分别使用`__met
 
 ## 16 单例模式
 
+这个绝对常考啊.绝对要记住1~2个方法,当时面试官是让手写的.
+
+### 1 使用`__new__`方法
+
+```python
+class Singleton(object):  
+    def __new__(cls, *args, **kw):  
+        if not hasattr(cls, '_instance'):  
+            orig = super(Singleton, cls)  
+            cls._instance = orig.__new__(cls, *args, **kw)  
+        return cls._instance  
+  
+class MyClass(Singleton):  
+    a = 1 
+```
+
+### 2 共享属性
+
+创建实例时把所有实例的`__dict__`指向同一个字典,这样它们具有相同的属性和方法.
+
+```python
+
+class Borg(object):  
+    _state = {}  
+    def __new__(cls, *args, **kw):  
+        ob = super(Borg, cls).__new__(cls, *args, **kw)  
+        ob.__dict__ = cls._state  
+        return ob  
+  
+class MyClass2(Borg):  
+    a = 1  
+```
+
+### 3 装饰器版本
+
+
 
 ```python
 def singleton(cls):
@@ -312,9 +349,9 @@ class MyClass:
 
 Python 中，一个变量的作用域总是由在代码中被赋值的地方所决定的。
 
-函数定义了本地作用域，而模块定义的是全局作用域。 如果想要在函数内定义全局作用域，需要加上global修饰符。
+当 Python 遇到一个变量的话他会按照这样的顺序进行搜索：
 
-变量名解析：LEGB原则 当在函数中使用未认证的变量名时，Python搜索４个作用域[本地作用域(L)，之后是上一层结构中def或者lambda的本地作用域(E), 之后是全局作用域(G)，最后是内置作用域(B)］并且在第一处能够找到这个变量名的地方停下来。如果变量名在整个的搜索过程中 都没有找到，Python就会报错。 补：上面的变量规则只适用于简单对象，当出现引用对象的属性时，则有另一套搜索规则:属性引用搜索一个或多个对象，而不是作用域，并且有可能涉及到所谓的"继承"
+本地作用域（Local）→当前作用域被嵌入的本地作用域（Enclosing locals）→全局/模块作用域（Global）→内置作用域（Built-in）
 
 ## 18 线程全局锁
 
@@ -390,7 +427,32 @@ reduce函数是对一个序列的每个项迭代调用函数，下面是求3的�
 
 ## 23 Python里的拷贝
 
-copy()和deepcopy()
+引用和copy(),deepcopy()的区别
+
+```python
+import copy
+a = [1, 2, 3, 4, ['a', 'b']]  #原始对象
+
+b = a  #赋值，传对象的引用
+c = copy.copy(a)  #对象拷贝，浅拷贝
+d = copy.deepcopy(a)  #对象拷贝，深拷贝
+
+a.append(5)  #修改对象a
+a[4].append('c')  #修改对象a中的['a', 'b']数组对象
+
+print 'a = ', a
+print 'b = ', b
+print 'c = ', c
+print 'd = ', d
+
+输出结果：
+a =  [1, 2, 3, 4, ['a', 'b', 'c'], 5]
+b =  [1, 2, 3, 4, ['a', 'b', 'c'], 5]
+c =  [1, 2, 3, 4, ['a', 'b', 'c']]
+d =  [1, 2, 3, 4, ['a', 'b']]
+```
+
+## 24 Python垃圾回收机制
 
 # 操作系统
 
@@ -429,6 +491,8 @@ epoll改了三个缺点.
 
 ## 3 ARP协议
 
+地址解析协议(Address Resolution Protocol): 根据IP地址获取物理地址的一个TCP/IP协
+
 ## 4 urllib和urllib2的区别
 
 这个面试官确实问过,当时答的urllib2可以Post而urllib不可以.
@@ -443,71 +507,79 @@ epoll改了三个缺点.
 
 ## 7 apache和nginx的区别
 
-1、nginx相对于apache的优点： 
-轻量级，同样起web 服务，比apache占用更少的内存及资源 
-抗并发，nginx 处理请求是异步非阻塞的，而apache 则是阻塞型的，在高并发下nginx 能保持低资源低消耗高性能 
-高度模块化的设计，编写模块相对简单 
-社区活跃，各种高性能模块出品迅速啊 
-apache 相对于nginx 的优点： 
+## 8 网站用户密码保存
 
-rewrite ，比nginx 的rewrite 强大 
-动态页面
-模块超多，基本想到的都可以找到 
-少bug ，nginx 的bug 相对较多 
+1. 明文保存
+2. 明文hash后保存,如md5
+3. MD5+Salt方式,这个salt可以随机
+4. 知乎使用了Bcrypy(好像)加密
 
-超稳定 
+## 9 HTTPs
 
-存在就是理由，一般来说，需要性能的web 服务，用nginx 。如果不需要性能只求稳定，那就apache 吧。
-后者的各种功能模块实现得比前者，例如ssl 的模块就比前者好，可配置项多。这里要注意一点，epoll(freebsd 上是 kqueue )网络
-IO 模型是nginx 处理性能高的根本理由，但并不是所有的情况下都是epoll 大获全胜的，如果本身提供静态服务的就只有寥寥几个文
-件，apache 的select 模型或许比epoll 更高性能。当然，这只是根据网络IO 模型的原理作的一个假设，真正的应用还是需要实测了再说
-的。 
+对称加密,非对称加密,TLS/SSL,RSA
 
-2、作为 Web 服务器：相比 Apache，Nginx 使用更少的资源，支持更多的并发连接，体现更高的效率，这点
-使 Nginx 尤其受到虚拟主机提供商的欢迎。在高连接并发的情况下，Nginx是Apache服务器不错的替代品: Nginx在美国是做虚拟主机生
-意的老板们经常选择的软件平台之一. 能够支持高达 50,000 个并发连接数的响应, 感谢Nginx为我们选择了 epoll and kqueue 作为开发模型. 
-Nginx
-作为负载均衡服务器: Nginx 既可以在内部直接支持 Rails 和 PHP 程序对外进行服务, 也可以支持作为 HTTP代理 服务器对外进行
-服务. Nginx采用C进行编写, 不论是系统资源开销还是CPU使用效率都比 Perlbal 要好很多. 
-作为邮件代理服务器: Nginx 同时也是一个非常优秀的邮件代理服务器（最早开发这个产品的目的之一也是作为邮件代理服务器）, Last.fm 描述了成功并且美妙的使用经验. 
-Nginx 是
-一个安装非常的简单 , 配置文件非常简洁（还能够支持perl语法）, Bugs 非常少的服务器: Nginx 启动特别容易, 并且几乎可以做到
-7*24不间断运行，即使运行数个月也不需要重新启动. 你还能够不间断服务的情况下进行软件版本的升级 . 
+## 10 XSRF和XSS
 
-3、Nginx 配置简洁, Apache 复杂 
-Nginx 静态处理性能比 Apache 高 3倍以上 
-Apache 对 PHP 支持比较简单，Nginx 需要配合其他后端用 
-Apache 的组件比 Nginx 多 
-现在 Nginx 才是 Web 服务器的首选 
+* CSRF(Cross-site request forgery)跨站请求伪造
+* XSS(Cross Site Scripting)跨站脚本攻击
 
-4、最核心的区别在于apache是同步多进程模型，一个连接对应一个进程；nginx是异步的，多个连接（万级别）可以对应一个进程 
+CSRF重点在请求,XSS重点在脚本
 
-5、nginx处理静态文件好,耗费内存少.但无疑apache仍然是目前的主流,有很多丰富的特性.所以还需要搭配着来.当然如果能确定nginx就适合需求,那么使用nginx会是更经济的方式. 
-apache有先天不支持多核心处理负载鸡肋的缺点，建议使用nginx做前端，後端用apache。大型网站建议用nginx自代的集群功能
+## 11 幂等 Idempotence
 
-6、
-从个人过往的使用情况来看，nginx的负载能力比apache高很多。最新的服务器也改用nginx了。而且nginx改完配置能-t测试一下配置有没
-有问题，apache重启的时候发现配置出错了，会很崩溃，改的时候都会非常小心翼翼现在看有好多集群站，前端nginx抗并发，后端apache集群，
-配合的也不错。
+HTTP方法的幂等性是指一次和多次请求某一个资源应该具有同样的**副作用**。(注意是副作用)
 
-7、nginx处理动态请求是鸡肋，一般动态请求要apache去做，nginx只适合静态和反向。 
+`GET http://www.bank.com/account/123456`，不会改变资源的状态，不论调用一次还是N次都没有副作用。请注意，这里强调的是一次和N次具有相同的副作用，而不是每次GET的结果相同。`GET http://www.news.com/latest-news`这个HTTP请求可能会每次得到不同的结果，但它本身并没有产生任何副作用，因而是满足幂等性的。
 
-8、从我个人的经验来看，nginx是很不错的前端服务器，负载性能很好，在老奔上开nginx，用webbench模拟10000个静态文件请求毫不吃力。apache对php等语言的支持很好，此外apache有强大的支持网路，发展时间相对nginx更久，
+DELETE方法用于删除资源，有副作用，但它应该满足幂等性。比如：`DELETE http://www.forum.com/article/4231`，调用一次和N次对系统产生的副作用是相同的，即删掉id为4231的帖子；因此，调用者可以多次调用或刷新页面而不必担心引起错误。
 
-9、
-Nginx优于apache的主要两点：1.Nginx本身就是一个反向代理服务器 2.Nginx支持7层负载均衡；其他的当然，Nginx可能会比
-apache支持更高的并发，但是根据NetCraft的统计，2011年4月的统计数据，Apache依然占有62.71%，而Nginx是
-7.35%，因此总得来说，Aapche依然是大部分公司的首先，因为其成熟的技术和开发社区已经也是非常不错的性能。 
 
-10、你对web server的需求决定你的选择。大
-部分情况下nginx都优于APACHE，比如说静态文件处理、PHP-CGI的支持、反向代理功能、前端Cache、维持连接等等。在
-Apache+PHP（prefork）模式下，如果PHP处理慢或者前端压力很大的情况下，很容易出现Apache进程数飙升，从而拒绝服务的现象。 
+POST所对应的URI并非创建的资源本身，而是资源的接收者。比如：`POST http://www.forum.com/articles`的语义是在`http://www.forum.com/articles`下创建一篇帖子，HTTP响应中应包含帖子的创建状态以及帖子的URI。两次相同的POST请求会在服务器端创建两份资源，它们具有不同的URI；所以，POST方法不具备幂等性。
 
-11、可以看一下nginx lua模块：https://github.com/chaoslaw...apache比nginx多的模块，可直接用lua实现apache是最流行的，why？大多数人懒得更新到nginx或者学新事物 
+PUT所对应的URI是要创建或更新的资源本身。比如：`PUT http://www.forum/articles/4231`的语义是创建或更新ID为4231的帖子。对同一URI进行多次PUT的副作用和一次PUT是相同的；因此，PUT方法具有幂等性。
 
-12、对于nginx，我喜欢它配置文件写的很简洁，正则配置让很多事情变得简单运行效率高，占用资源少，代理功能强大，很适合做前端响应服务器 
 
-13、Apache在处理动态有优势，Nginx并发性比较好，CPU内存占用低，如果rewrite频繁，那还是Apache吧
+## 12 RESTful架构(SOAP,RPC)
+
+推荐: http://www.ruanyifeng.com/blog/2011/09/restful.html
+
+
+## 13 SOAP
+
+SOAP（原为Simple Object Access Protocol的首字母缩写，即简单对象访问协议）是交换数据的一种协议规范，使用在计算机网络Web服务（web service）中，交换带结构信息。SOAP为了简化网页服务器（Web Server）从XML数据库中提取数据时，节省去格式化页面时间，以及不同应用程序之间按照HTTP通信协议，遵从XML格式执行资料互换，使其抽象于语言实现、平台和硬件。
+
+## 14 RPC
+
+RPC（Remote Procedure Call Protocol）——远程过程调用协议，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。RPC协议假定某些传输协议的存在，如TCP或UDP，为通信程序之间携带信息数据。在OSI网络通信模型中，RPC跨越了传输层和应用层。RPC使得开发包括网络分布式多程序在内的应用程序更加容易。
+
+总结:服务提供的两大流派.传统意义以方法调用为导向通称RPC。为了企业SOA,若干厂商联合推出webservice,制定了wsdl接口定义,传输soap.当互联网时代,臃肿SOA被简化为http+xml/json.但是简化出现各种混乱。以资源为导向,任何操作无非是对资源的增删改查，于是统一的REST出现了.
+
+进化的顺序: RPC -> SOAP -> RESTful
+
+## 15 UGI和WSGI
+
+soapp
+
+
+## 16 中间人攻击
+
+在GFW里屡见不鲜的,呵呵.
+
+中间人攻击（Man-in-the-middle attack，通常缩写为MITM）是指攻击者与通讯的两端分别创建独立的联系，并交换其所收到的数据，使通讯的两端认为他们正在通过一个私密的连接与对方直接对话，但事实上整个会话都被攻击者完全控制。
+
+# *NIX
+
+## unix进程间通信方式(IPC)
+
+1. 管道（Pipe）：管道可用于具有亲缘关系进程间的通信，允许一个进程和另一个与它有共同祖先的进程之间进行通信。
+2. 命名管道（named pipe）：命名管道克服了管道没有名字的限制，因此，除具有管道所具有的功能外，它还允许无亲缘关系进程间的通信。命名管道在文件系统中有对应的文件名。命名管道通过命令mkfifo或系统调用mkfifo来创建。
+3. 信号（Signal）：信号是比较复杂的通信方式，用于通知接受进程有某种事件发生，除了用于进程间通信外，进程还可以发送信号给进程本身；linux除了支持Unix早期信号语义函数sigal外，还支持语义符合Posix.1标准的信号函数sigaction（实际上，该函数是基于BSD的，BSD为了实现可靠信号机制，又能够统一对外接口，用sigaction函数重新实现了signal函数）。
+4. 消息（Message）队列：消息队列是消息的链接表，包括Posix消息队列system V消息队列。有足够权限的进程可以向队列中添加消息，被赋予读权限的进程则可以读走队列中的消息。消息队列克服了信号承载信息量少，管道只能承载无格式字节流以及缓冲区大小受限等缺
+5. 共享内存：使得多个进程可以访问同一块内存空间，是最快的可用IPC形式。是针对其他通信机制运行效率较低而设计的。往往与其它通信机制，如信号量结合使用，来达到进程间的同步及互斥。
+6. 内存映射（mapped memory）：内存映射允许任何多个进程间通信，每一个使用该机制的进程通过把一个共享的文件映射到自己的进程地址空间来实现它。
+7. 信号量（semaphore）：主要作为进程间以及同一进程不同线程之间的同步手段。
+8. 套接口（Socket）：更为一般的进程间通信机制，可用于不同机器之间的进程间通信。起初是由Unix系统的BSD分支开发出来的，但现在一般可以移植到其它类Unix系统上：Linux和System V的变种都支持套接字。
+
 
 # 数据结构
 
@@ -603,6 +675,110 @@ class Solution:
             next.next = head
             return next
         return head
+```
+
+## 创建字典的方法
+
+### 1 直接创建
+
+```python
+dict = {'name':'earth', 'port':'80'}
+```
+
+### 2 工厂方法
+
+```python
+items=[('name','earth'),('port','80')]
+dict2=dict(items)
+dict1=dict((['name','earth'],['port','80']))
+```
+
+### 3 fromkeys()方法
+
+```python
+dict1={}.fromkeys(('x','y'),-1)
+#dict={'x':-1,'y':-1}
+dict2={}.fromkeys(('x','y'))
+#dict2={'x':None, 'y':None}
+```
+
+## 合并两个有序列表
+
+知乎远程面试要求编程
+
+尾递归
+
+```python
+def _recursion_merge_sort2(l1, l2, tmp):
+    if len(l1) == 0 or len(l2) == 0:
+        tmp.extend(l1)
+        tmp.extend(l2)
+        return tmp
+    else:
+        if l1[0] < l2[0]:
+            tmp.append(l1[0])
+            del l1[0]
+        else:
+            tmp.append(l2[0])
+            del l2[0]
+        return _recursion_merge_sort2(l1, l2, tmp)
+
+def recursion_merge_sort2(l1, l2):
+    return _recursion_merge_sort2(l1, l2, [])
+```
+
+循环算法
+
+```pyhton
+def loop_merge_sort(l1, l2):
+    tmp = []
+    while len(l1) > 0 and len(l2) > 0:
+        if l1[0] < l2[0]:
+            tmp.append(l1[0])
+            del l1[0]
+        else:
+            tmp.append(l2[0])
+            del l2[0]
+    tmp.extend(l1)
+    tmp.extend(l2)
+    return tmp
+```
+
+## 交叉链表求交点
+
+去哪儿的面试,没做出来.
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+def node(l1, l2):
+    length1, lenth2 = 0, 0
+    # 求两个链表长度
+    while l1.next: 
+        l1 = l1.next
+        length1 += 1
+    while l2.next:
+        l2 = l2.next
+        length2 += 1
+    # 长的链表先走
+    if length1 > lenth2:
+        for _ in range(length1 - length2):
+            l1 = l1.next
+    else:
+        for _ in range(length2 - length1):
+            l2 = l2.next
+    while l1 and l2:
+        if l1.next == l2.next:
+            return l1.next
+        else:
+            l1 = l1.next
+            l2 = l2.next
+    
+
+
 ```
 
 

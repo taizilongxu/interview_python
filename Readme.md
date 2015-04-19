@@ -43,7 +43,7 @@ Python其实有3个方法,即静态方法(staticmethod),类方法(classmethod)�
 ```python
 def foo(x):
     print "executing foo(%s)"%(x)
-        
+
 class A(object):
     def foo(self,x):
         print "executing foo(%s,%s)"%(self,x)
@@ -76,7 +76,7 @@ a=A()
 ```python
 class Person:
     name="aaa"
-    
+
 p1=Person()
 p2=Person()
 p1.name="bbb"
@@ -94,7 +94,7 @@ print Person.name  # aaa
 ```python
 class Person:
     name=[]
-    
+
 p1=Person()
 p2=Person()
 p1.name.append(1)
@@ -173,7 +173,7 @@ http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 
 ## 9 迭代器和生成器
 
-这个是stackoverflow里python排名第一的问题,值得一看: http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python 
+这个是stackoverflow里python排名第一的问题,值得一看: http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
 
 这是中文版: http://taizilongxu.gitbooks.io/stackoverflow-about-python/content/1/README.html
 
@@ -299,15 +299,15 @@ ps: `__metaclass__`是创建类时起作用.所以我们可以分别使用`__met
 ### 1 使用`__new__`方法
 
 ```python
-class Singleton(object):  
-    def __new__(cls, *args, **kw):  
-        if not hasattr(cls, '_instance'):  
-            orig = super(Singleton, cls)  
-            cls._instance = orig.__new__(cls, *args, **kw)  
-        return cls._instance  
-  
-class MyClass(Singleton):  
-    a = 1 
+class Singleton(object):
+    def __new__(cls, *args, **kw):
+        if not hasattr(cls, '_instance'):
+            orig = super(Singleton, cls)
+            cls._instance = orig.__new__(cls, *args, **kw)
+        return cls._instance
+
+class MyClass(Singleton):
+    a = 1
 ```
 
 ### 2 共享属性
@@ -316,15 +316,15 @@ class MyClass(Singleton):
 
 ```python
 
-class Borg(object):  
-    _state = {}  
-    def __new__(cls, *args, **kw):  
-        ob = super(Borg, cls).__new__(cls, *args, **kw)  
-        ob.__dict__ = cls._state  
-        return ob  
-  
-class MyClass2(Borg):  
-    a = 1  
+class Borg(object):
+    _state = {}
+    def __new__(cls, *args, **kw):
+        ob = super(Borg, cls).__new__(cls, *args, **kw)
+        ob.__dict__ = cls._state
+        return ob
+
+class MyClass2(Borg):
+    a = 1
 ```
 
 ### 3 装饰器版本
@@ -332,11 +332,11 @@ class MyClass2(Borg):
 
 
 ```python
-def singleton(cls):
+def singleton(cls, *args, **kw):
     instances = {}
     def getinstance():
         if cls not in instances:
-            instances[cls] = cls()
+            instances[cls] = cls(*args, **kw)
         return instances[cls]
     return getinstance
 
@@ -413,16 +413,16 @@ filter 函数的功能相当于过滤器。调用一个布尔函数`bool_func`�
 map函数是对一个序列的每个项依次执行函数，下面是对一个序列每个项都乘以2：
 
 ```python
->>> a = map(lambda x:x*2,[1,2,3])  
->>> list(a)  
-[2, 4, 6] 
+>>> a = map(lambda x:x*2,[1,2,3])
+>>> list(a)
+[2, 4, 6]
 ```
 
 reduce函数是对一个序列的每个项迭代调用函数，下面是求3的阶乘：
 
 ```python
->>> reduce(lambda x,y:x*y,range(1,4))  
-6 
+>>> reduce(lambda x,y:x*y,range(1,4))
+6
 ```
 
 ## 23 Python里的拷贝
@@ -489,6 +489,13 @@ Python默认定义了三代对象集合，索引数越大，对象存活时间�
 
 ## 26 Python的is
 
+is是对比地址,==是对比值
+
+## 27 read,readline和readlines
+
+* read        读取整个文件
+* readline    读取下一行,使用生成器方法
+* readlines   读取整个文件到一个迭代器以供我们遍历
 
 # 操作系统
 
@@ -502,8 +509,8 @@ Python默认定义了三代对象集合，索引数越大，对象存活时间�
 
 基本上select有3个缺点:
 
-1. 连接数受限  
-2. 查找配对速度慢 
+1. 连接数受限
+2. 查找配对速度慢
 3. 数据由内核拷贝到用户态
 
 poll改善了第一个缺点
@@ -622,15 +629,29 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 
 ## 2 数据库索引
 
+推荐: http://tech.meituan.com/mysql-index.html
+
+[MySQL索引背后的数据结构及算法原理](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
+
+聚集索引,非聚集索引,B-Tree,B+Tree,最左前缀原理
 
 
 ## 3 Redis原理
+
+
+## 4 乐观锁和悲观锁
+
+
 
 
 
 # 网络
 
 ## 1 三次握手
+
+1. 客户端通过向服务器端发送一个SYN来创建一个主动打开，作为三路握手的一部分。客户端把这段连接的序号设定为随机数 A。
+2. 服务器端应当为一个合法的SYN回送一个SYN/ACK。ACK 的确认码应为 A+1，SYN/ACK 包本身又有一个随机序号 B。
+3. 最后，客户端再发送一个ACK。当服务端受到这个ACK的时候，就完成了三路握手，并进入了连接创建状态。此时包序号被设定为收到的确认号 A+1，而响应则为 B+1。
 
 ## 2 四次挥手
 
@@ -659,7 +680,19 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 3. MD5+Salt方式,这个salt可以随机
 4. 知乎使用了Bcrypy(好像)加密
 
-## 9 HTTPS
+## 9 HTTP和HTTPS
+
+
+|状态码|定义|
+|:--|:--|
+|1xx 报告|接收到请求，继续进程|
+|2xx 成功|步骤成功接收，被理解，并被接受|
+|3xx 重定向|为了完成请求,必须采取进一步措施|
+|4xx 客户端出错|请求包括错的顺序或不能完成|
+|5xx 服务器出错|服务器无法完成显然有效的请求|
+
+403: Forbidden
+404: Not Found
 
 HTTPS握手,对称加密,非对称加密,TLS/SSL,RSA
 
@@ -701,9 +734,9 @@ RPC（Remote Procedure Call Protocol）——远程过程调用协议，它是�
 
 进化的顺序: RPC -> SOAP -> RESTful
 
-## 15 UGI和WSGI
+## 15 CGI和WSGI
 
-soapp
+
 
 
 ## 16 中间人攻击
@@ -715,6 +748,19 @@ soapp
 ## 17 c10k问题
 
 所谓c10k问题，指的是服务器同时支持成千上万个客户端的问题，也就是concurrent 10 000 connection（这也是c10k这个名字的由来）。
+
+## 18 socket
+
+推荐: http://www.360doc.com/content/11/0609/15/5482098_122692444.shtml
+
+Socket=Ip address+ TCP/UDP + port
+
+## 19 浏览器缓存
+
+推荐: http://www.cnblogs.com/skynet/archive/2012/11/28/2792503.html
+
+304 not midifyide
+
 # *NIX
 
 ## unix进程间通信方式(IPC)
@@ -733,6 +779,14 @@ soapp
 
 ## 1 红黑树
 
+红黑树与AVL的比较：
+
+AVL是严格平衡树，因此在增加或者删除节点的时候，根据不同情况，旋转的次数比红黑树要多；
+
+红黑是用非严格的平衡来换取增删节点时候旋转次数的降低；
+
+所以简单说，如果你的应用中，搜索的次数远远大于插入和删除，那么选择AVL，如果搜索，插入删除次数几乎差不多，应该选择RB。
+
 # 编程题
 
 ## 1 台阶问题/斐波纳挈
@@ -741,6 +795,24 @@ soapp
 
 ```python
 fib = lambda n: 1 if n <= 2 else fib(n - 1) + fib(n - 2)
+```
+
+第二种记忆方法
+
+```python
+def memo(func): 
+    cache={}    
+    def wrap(*args): 
+        if args not in cache: 
+            cache[args]=func(*args) 
+        return cache[args] 
+    return wrap 
+
+@memo 
+def fib(i): 
+    if i<2: 
+        return 1 
+    return fib(i-1)+fib(i-2)
 ```
 
 ## 2 变态台阶问题
@@ -903,7 +975,7 @@ def loop_merge_sort(l1, l2):
 def node(l1, l2):
     length1, lenth2 = 0, 0
     # 求两个链表长度
-    while l1.next: 
+    while l1.next:
         l1 = l1.next
         length1 += 1
     while l2.next:
@@ -924,21 +996,44 @@ def node(l1, l2):
             l2 = l2.next
 ```
 
+## 二分查找
+
+```python
+def binarySearch(l, t):
+    low, high = 0, len(l) - 1
+    while low < high:
+        print low, high
+        mid = (low + high) / 2
+        if l[mid] > t:
+            high = mid
+        elif l[mid] < t:
+            low = mid + 1
+        else:
+            return mid
+    return False
+
+if __name__ == '__main__':
+    l = [1, 4, 12, 45, 66, 99, 120, 444]
+    print binarySearch(l, 12)
+    print binarySearch(l, 1)
+    print binarySearch(l, 13)
+```
+
 ## 快排
 
 ```python
-def qsort(seq):  
-    if seq==[]:  
-        return []  
-    else:  
-        pivot=seq[0]  
-        lesser=qsort([x for x in seq[1:] if x<pivot])  
-        greater=qsort([x for x in seq[1:] if x>=pivot])  
-        return lesser+[pivot]+greater  
-  
-if __name__=='__main__':  
-    seq=[5,6,78,9,0,-1,2,3,-65,12]  
-    print(qsort(seq))  
+def qsort(seq):
+    if seq==[]:
+        return []
+    else:
+        pivot=seq[0]
+        lesser=qsort([x for x in seq[1:] if x<pivot])
+        greater=qsort([x for x in seq[1:] if x>=pivot])
+        return lesser+[pivot]+greater
+
+if __name__=='__main__':
+    seq=[5,6,78,9,0,-1,2,3,-65,12]
+    print(qsort(seq))
 ```
 
 ## 找零问题
@@ -1003,7 +1098,78 @@ if __name__ == '__main__':
     deep(tree)
 ```
 
+## 前中后序遍历
 
+深度遍历改变顺序就OK了
 
+## 求最大树深
 
+```python
+def maxDepth(root):
+        if not root:
+            return 0
+        return max(maxDepth(root.left), maxDepth(root.right)) + 1
+```
 
+## 求两棵树是否相同
+
+```python
+def isSameTree(p, q):
+    if p == None and q == None:
+        return True
+    elif p and q :
+        return p.val == q.val and isSameTree(p.left,q.left) and isSameTree(p.right,q.right)
+    else :
+        return False
+```
+
+## 前序中序求后序
+
+推荐: http://blog.csdn.net/hinyunsin/article/details/6315502
+
+```python
+# 重建
+def rebuild(pre, center):
+    if not pre:
+        return
+    cur = Node(pre[0])
+    index = center.index(pre[0])
+    cur.left = rebuild(pre[1:index + 1], center[:index])
+    cur.right = rebuild(pre[index + 1:], center[index + 1:])
+    return cur
+
+# 后序遍历
+def deep(root):
+    if not root:
+        return
+    deep(root.left)
+    deep(root.right)
+    print root.data
+```
+
+## 单链表逆置
+
+```python
+class Node(object):
+    def __init__(self, data=None, next=None):
+        self.data = data
+        self.next = next
+
+link = Node(1, Node(2, Node(3, Node(4, Node(5, Node(6, Node(7, Node(8, Node(9)))))))))
+
+def rev(link):
+    pre = link
+    cur = link.next
+    pre.next = None
+    while cur:
+        tmp = cur.next
+        cur.next = pre
+        pre = cur
+        cur = tmp
+    return pre
+
+root = rev(link)
+while root:
+    print root.data
+    root = root.next
+```

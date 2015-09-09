@@ -1,7 +1,6 @@
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
 **Table of Contents**
 
-- [Python面试题集](#python)
 - [Python语言特性](#python)
     - [1 Python的函数参数传递](#1-python)
     - [2 Python中的元类(metaclass)](#2-pythonmetaclass)
@@ -98,33 +97,20 @@
         - [3 fromkeys()方法](#3-fromkeys)
     - [8 合并两个有序列表](#8-)
     - [9 交叉链表求交点](#9-)
-- [Definition for singly-linked list.](#definition-for-singly-linked-list)
-- [class ListNode:](#class-listnode)
-- [def __init__(self, x):](#def-initself-x)
-- [self.val = x](#selfval--x)
-- [self.next = None](#selfnext--none)
     - [10 二分查找](#10-)
     - [11 快排](#11-)
     - [12 找零问题](#12-)
     - [13 广度遍历和深度遍历二叉树](#13-)
-- [14 二叉树节点](#14-)
-- [15 层次遍历](#15-)
-- [16 深度遍历](#16-)
+    - [14 二叉树节点](#14-)
+    - [15 层次遍历](#15-)
+    - [16 深度遍历](#16-)
     - [17 前中后序遍历](#17-)
     - [18 求最大树深](#18-)
     - [19 求两棵树是否相同](#19-)
     - [20 前序中序求后序](#20-)
-- [重建](#)
-- [后序遍历](#)
     - [21 单链表逆置](#21-)
 
 <!-- markdown-toc end -->
-
-# Python面试题集
-
-目前面了4家python的公司,基本都是很基础的东西,对比发现和stackoverflow上高票数的问题有很多重复,整理一下希望对别人有帮助.
-
-其中有可能是自己想到的一些知识点,也有一些是网上收集的.答案可能不太详尽,有需要还是自己搜一下吧.
 
 # Python语言特性
 
@@ -905,7 +891,7 @@ Socket=Ip address+ TCP/UDP + port
 3. 文件断点续传
 3. 身份认证,状态管理,Cache缓存
 
-## Ajax
+## 21 Ajax
 
 # *NIX
 
@@ -1124,11 +1110,10 @@ def loop_merge_sort(l1, l2):
 去哪儿的面试,没做出来.
 
 ```python
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 def node(l1, l2):
     length1, lenth2 = 0, 0
     # 求两个链表长度
@@ -1223,7 +1208,7 @@ if __name__ == '__main__':
 给定一个数组，构建二叉树，并且按层次打印这个二叉树
 
 ```python
-# 14 二叉树节点
+## 14 二叉树节点
 class Node(object):
     def __init__(self, data, left=None, right=None):
         self.data = data
@@ -1232,7 +1217,7 @@ class Node(object):
 
 tree = Node(1, Node(3, Node(7, Node(0)), Node(6)), Node(2, Node(5), Node(4)))
 
-# 15 层次遍历
+## 15 层次遍历
 def lookup(root):
     stack = [root]
     while stack:
@@ -1242,7 +1227,7 @@ def lookup(root):
             stack.append(current.left)
         if current.right:
             stack.append(current.right)
-# 16 深度遍历
+## 16 深度遍历
 def deep(root):
     if not root:
         return
@@ -1285,7 +1270,6 @@ def isSameTree(p, q):
 推荐: http://blog.csdn.net/hinyunsin/article/details/6315502
 
 ```python
-# 重建
 def rebuild(pre, center):
     if not pre:
         return
@@ -1295,7 +1279,6 @@ def rebuild(pre, center):
     cur.right = rebuild(pre[index + 1:], center[index + 1:])
     return cur
 
-# 后序遍历
 def deep(root):
     if not root:
         return

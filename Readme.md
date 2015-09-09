@@ -88,46 +88,37 @@
 - [编程题](#)
     - [1 台阶问题/斐波纳挈](#1-)
     - [2 变态台阶问题](#2-)
-    - [矩形覆盖](#)
-    - [2 杨氏矩阵查找](#2-)
-    - [3 去除列表中的重复元素](#3-)
-    - [4 链表成对调换](#4-)
-- [Definition for singly-linked list.](#definition-for-singly-linked-list)
-- [class ListNode:](#class-listnode)
-- [def __init__(self, x):](#def-initself-x)
-- [self.val = x](#selfval--x)
-- [self.next = None](#selfnext--none)
-    - [创建字典的方法](#)
+    - [3 矩形覆盖](#3-)
+    - [4 杨氏矩阵查找](#4-)
+    - [5 去除列表中的重复元素](#5-)
+    - [6 链表成对调换](#6-)
+    - [7 创建字典的方法](#7-)
         - [1 直接创建](#1-)
         - [2 工厂方法](#2-)
         - [3 fromkeys()方法](#3-fromkeys)
-- [dict={'x':-1,'y':-1}](#dictx-1y-1)
-- [dict2={'x':None, 'y':None}](#dict2xnone-ynone)
-    - [合并两个有序列表](#)
-    - [交叉链表求交点](#)
+    - [8 合并两个有序列表](#8-)
+    - [9 交叉链表求交点](#9-)
 - [Definition for singly-linked list.](#definition-for-singly-linked-list)
 - [class ListNode:](#class-listnode)
 - [def __init__(self, x):](#def-initself-x)
 - [self.val = x](#selfval--x)
 - [self.next = None](#selfnext--none)
-    - [二分查找](#)
-    - [快排](#)
-    - [找零问题](#)
-    - [广度遍历和深度遍历二叉树](#)
-- [二叉树节点](#)
-- [层次遍历](#)
-- [深度遍历](#)
-    - [前中后序遍历](#)
-    - [求最大树深](#)
-    - [求两棵树是否相同](#)
-    - [前序中序求后序](#)
+    - [10 二分查找](#10-)
+    - [11 快排](#11-)
+    - [12 找零问题](#12-)
+    - [13 广度遍历和深度遍历二叉树](#13-)
+- [14 二叉树节点](#14-)
+- [15 层次遍历](#15-)
+- [16 深度遍历](#16-)
+    - [17 前中后序遍历](#17-)
+    - [18 求最大树深](#18-)
+    - [19 求两棵树是否相同](#19-)
+    - [20 前序中序求后序](#20-)
 - [重建](#)
 - [后序遍历](#)
-    - [单链表逆置](#)
+    - [21 单链表逆置](#21-)
 
 <!-- markdown-toc end -->
- 
-
 
 # Python面试题集
 
@@ -990,7 +981,7 @@ fib(1000)
 fib = lambda n: i if n < 2 else 2 * fib(n - 1)
 ```
 
-## 矩形覆盖
+## 3 矩形覆盖
 
 我们可以用`2*1`的小矩形横着或者竖着去覆盖更大的矩形。请问用n个`2*1`的小矩形无重叠地覆盖一个`2*n`的大矩形，总共有多少种方法？
 
@@ -1000,11 +991,11 @@ fib = lambda n: i if n < 2 else 2 * fib(n - 1)
 f = lambda n: 1 if n < 2 else f(n - 1) + f(n - 2)
 ```
 
-## 2 杨氏矩阵查找
+## 4 杨氏矩阵查找
 
 在一个m行n列二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
 
-## 3 去除列表中的重复元素
+## 5 去除列表中的重复元素
 
 用集合
 
@@ -1039,16 +1030,15 @@ l2 = []
 
 面试官提到的,先排序然后删除.
 
-## 4 链表成对调换
+## 6 链表成对调换
 
 `1->2->3->4`转换成`2->1->4->3`.
 
 ```python
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 class Solution:
     # @param a ListNode
@@ -1062,7 +1052,7 @@ class Solution:
         return head
 ```
 
-## 创建字典的方法
+## 7 创建字典的方法
 
 ### 1 直接创建
 
@@ -1082,12 +1072,12 @@ dict1=dict((['name','earth'],['port','80']))
 
 ```python
 dict1={}.fromkeys(('x','y'),-1)
-#dict={'x':-1,'y':-1}
+dict={'x':-1,'y':-1}
 dict2={}.fromkeys(('x','y'))
-#dict2={'x':None, 'y':None}
+dict2={'x':None, 'y':None}
 ```
 
-## 合并两个有序列表
+## 8 合并两个有序列表
 
 知乎远程面试要求编程
 
@@ -1129,7 +1119,7 @@ def loop_merge_sort(l1, l2):
     return tmp
 ```
 
-## 交叉链表求交点
+## 9 交叉链表求交点
 
 去哪儿的面试,没做出来.
 
@@ -1163,7 +1153,7 @@ def node(l1, l2):
             l2 = l2.next
 ```
 
-## 二分查找
+## 10 二分查找
 
 ```python
 def binarySearch(l, t):
@@ -1186,7 +1176,7 @@ if __name__ == '__main__':
     print binarySearch(l, 13)
 ```
 
-## 快排
+## 11 快排
 
 ```python
 def qsort(seq):
@@ -1203,7 +1193,7 @@ if __name__=='__main__':
     print(qsort(seq))
 ```
 
-## 找零问题
+## 12 找零问题
 
 ```python
 def  coinChange(values, money, coinsUsed):
@@ -1228,12 +1218,12 @@ if __name__ == '__main__':
     coinChange(values, money, coinsUsed)
 ```
 
-## 广度遍历和深度遍历二叉树
+## 13 广度遍历和深度遍历二叉树
 
 给定一个数组，构建二叉树，并且按层次打印这个二叉树
 
 ```python
-# 二叉树节点
+# 14 二叉树节点
 class Node(object):
     def __init__(self, data, left=None, right=None):
         self.data = data
@@ -1242,7 +1232,7 @@ class Node(object):
 
 tree = Node(1, Node(3, Node(7, Node(0)), Node(6)), Node(2, Node(5), Node(4)))
 
-# 层次遍历
+# 15 层次遍历
 def lookup(root):
     stack = [root]
     while stack:
@@ -1252,7 +1242,7 @@ def lookup(root):
             stack.append(current.left)
         if current.right:
             stack.append(current.right)
-# 深度遍历
+# 16 深度遍历
 def deep(root):
     if not root:
         return
@@ -1265,11 +1255,11 @@ if __name__ == '__main__':
     deep(tree)
 ```
 
-## 前中后序遍历
+## 17 前中后序遍历
 
 深度遍历改变顺序就OK了
 
-## 求最大树深
+## 18 求最大树深
 
 ```python
 def maxDepth(root):
@@ -1278,7 +1268,7 @@ def maxDepth(root):
         return max(maxDepth(root.left), maxDepth(root.right)) + 1
 ```
 
-## 求两棵树是否相同
+## 19 求两棵树是否相同
 
 ```python
 def isSameTree(p, q):
@@ -1290,7 +1280,7 @@ def isSameTree(p, q):
         return False
 ```
 
-## 前序中序求后序
+## 20 前序中序求后序
 
 推荐: http://blog.csdn.net/hinyunsin/article/details/6315502
 
@@ -1314,7 +1304,7 @@ def deep(root):
     print root.data
 ```
 
-## 单链表逆置
+## 21 单链表逆置
 
 ```python
 class Node(object):

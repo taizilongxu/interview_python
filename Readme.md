@@ -1,3 +1,134 @@
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
+**Table of Contents**
+
+- [Python面试题集](#python)
+- [Python语言特性](#python)
+    - [1 Python的函数参数传递](#1-python)
+    - [2 Python中的元类(metaclass)](#2-pythonmetaclass)
+    - [3 @staticmethod和@classmethod](#3-staticmethodclassmethod)
+    - [4 类变量和实例变量](#4-)
+    - [5 Python自省](#5-python)
+    - [6 字典推导式](#6-)
+    - [7 Python中单下划线和双下划线](#7-python)
+    - [8 字符串格式化:%和.format](#8-format)
+    - [9 迭代器和生成器](#9-)
+    - [10 `*args` and `**kwargs`](#10-args-and-kwargs)
+    - [11 面向切面编程AOP和装饰器](#11-aop)
+    - [12 鸭子类型](#12-)
+    - [13 Python中重载](#13-python)
+    - [14 新式类和旧式类](#14-)
+    - [15 `__new__`和`__init__`的区别](#15-newinit)
+    - [16 单例模式](#16-)
+        - [1 使用`__new__`方法](#1-new)
+        - [2 共享属性](#2-)
+        - [3 装饰器版本](#3-)
+    - [17 Python中的作用域](#17-python)
+    - [18 GIL线程全局锁](#18-gil)
+    - [19 协程](#19-)
+    - [20 闭包](#20-)
+    - [21 lambda函数](#21-lambda)
+    - [22 Python函数式编程](#22-python)
+    - [23 Python里的拷贝](#23-python)
+    - [24 Python垃圾回收机制](#24-python)
+        - [1 引用计数](#1-)
+        - [2 标记-清除机制](#2--)
+        - [3 分代技术](#3-)
+    - [25 Python的List](#25-pythonlist)
+    - [26 Python的is](#26-pythonis)
+    - [27 read,readline和readlines](#27-readreadlinereadlines)
+    - [28 Python2和3的区别](#28-python23)
+- [操作系统](#)
+    - [1 select,poll和epoll](#1-selectpollepoll)
+    - [2 调度算法](#2-)
+    - [3 死锁](#3-)
+    - [4 程序编译与链接](#4-)
+        - [1 预处理](#1-)
+        - [2 编译](#2-)
+        - [3 汇编](#3-)
+        - [4 链接](#4-)
+    - [5 静态链接和动态链接](#5-)
+    - [6 虚拟内存技术](#6-)
+    - [7 分页和分段](#7-)
+        - [分页与分段的主要区别](#)
+    - [8 页面置换算法](#8-)
+    - [9 边沿触发和水平触发](#9-)
+- [数据库](#)
+    - [1 事务](#1-)
+    - [2 数据库索引](#2-)
+    - [3 Redis原理](#3-redis)
+    - [4 乐观锁和悲观锁](#4-)
+    - [5 MVCC](#5-mvcc)
+    - [6 MyISAM和InnoDB](#6-myisaminnodb)
+- [网络](#)
+    - [1 三次握手](#1-)
+    - [2 四次挥手](#2-)
+    - [3 ARP协议](#3-arp)
+    - [4 urllib和urllib2的区别](#4-urlliburllib2)
+    - [5 Post和Get](#5-postget)
+    - [6 Cookie和Session](#6-cookiesession)
+    - [7 apache和nginx的区别](#7-apachenginx)
+    - [8 网站用户密码保存](#8-)
+    - [9 HTTP和HTTPS](#9-httphttps)
+    - [10 XSRF和XSS](#10-xsrfxss)
+    - [11 幂等 Idempotence](#11--idempotence)
+    - [12 RESTful架构(SOAP,RPC)](#12-restfulsoaprpc)
+    - [13 SOAP](#13-soap)
+    - [14 RPC](#14-rpc)
+    - [15 CGI和WSGI](#15-cgiwsgi)
+    - [16 中间人攻击](#16-)
+    - [17 c10k问题](#17-c10k)
+    - [18 socket](#18-socket)
+    - [19 浏览器缓存](#19-)
+    - [20 HTTP1.0和HTTP1.1](#20-http10http11)
+    - [Ajax](#ajax)
+- [*NIX](#nix)
+    - [unix进程间通信方式(IPC)](#unixipc)
+- [数据结构](#)
+    - [1 红黑树](#1-)
+- [编程题](#)
+    - [1 台阶问题/斐波纳挈](#1-)
+    - [2 变态台阶问题](#2-)
+    - [矩形覆盖](#)
+    - [2 杨氏矩阵查找](#2-)
+    - [3 去除列表中的重复元素](#3-)
+    - [4 链表成对调换](#4-)
+- [Definition for singly-linked list.](#definition-for-singly-linked-list)
+- [class ListNode:](#class-listnode)
+- [def __init__(self, x):](#def-initself-x)
+- [self.val = x](#selfval--x)
+- [self.next = None](#selfnext--none)
+    - [创建字典的方法](#)
+        - [1 直接创建](#1-)
+        - [2 工厂方法](#2-)
+        - [3 fromkeys()方法](#3-fromkeys)
+- [dict={'x':-1,'y':-1}](#dictx-1y-1)
+- [dict2={'x':None, 'y':None}](#dict2xnone-ynone)
+    - [合并两个有序列表](#)
+    - [交叉链表求交点](#)
+- [Definition for singly-linked list.](#definition-for-singly-linked-list)
+- [class ListNode:](#class-listnode)
+- [def __init__(self, x):](#def-initself-x)
+- [self.val = x](#selfval--x)
+- [self.next = None](#selfnext--none)
+    - [二分查找](#)
+    - [快排](#)
+    - [找零问题](#)
+    - [广度遍历和深度遍历二叉树](#)
+- [二叉树节点](#)
+- [层次遍历](#)
+- [深度遍历](#)
+    - [前中后序遍历](#)
+    - [求最大树深](#)
+    - [求两棵树是否相同](#)
+    - [前序中序求后序](#)
+- [重建](#)
+- [后序遍历](#)
+    - [单链表逆置](#)
+
+<!-- markdown-toc end -->
+ 
+
+
 # Python面试题集
 
 目前面了4家python的公司,基本都是很基础的东西,对比发现和stackoverflow上高票数的问题有很多重复,整理一下希望对别人有帮助.
@@ -353,7 +484,7 @@ Python 中，一个变量的作用域总是由在代码中被赋值的地方所�
 
 本地作用域（Local）→当前作用域被嵌入的本地作用域（Enclosing locals）→全局/模块作用域（Global）→内置作用域（Built-in）
 
-## 18 线程全局锁
+## 18 GIL线程全局锁
 
 线程全局锁(Global Interpreter Lock),即Python为了保证线程安全而采取的独立线程运行的限制,说白了就是一个核只能在同一时间运行一个线程.
 
@@ -496,6 +627,10 @@ is是对比地址,==是对比值
 * read        读取整个文件
 * readline    读取下一行,使用生成器方法
 * readlines   读取整个文件到一个迭代器以供我们遍历
+
+## 28 Python2和3的区别
+
+
 
 # 操作系统
 
@@ -641,9 +776,18 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 
 ## 4 乐观锁和悲观锁
 
+悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作
+
+乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性。
+
+## 5 MVCC
 
 
+## 6 MyISAM和InnoDB
 
+MyISAM 适合于一些需要大量查询的应用，但其对于有大量写操作并不是很好。甚至你只是需要update一个字段，整个表都会被锁起来，而别的进程，就算是读进程都无法操作直到读操作完成。另外，MyISAM 对于 SELECT COUNT(*) 这类的计算是超快无比的。
+
+InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应用，它会比 MyISAM 还慢。他是它支持“行锁” ，于是在写操作比较多的时候，会更优秀。并且，他还支持更多的高级应用，比如：事务。
 
 # 网络
 
@@ -761,6 +905,17 @@ Socket=Ip address+ TCP/UDP + port
 
 304 not midifyide
 
+## 20 HTTP1.0和HTTP1.1
+
+推荐: http://blog.csdn.net/elifefly/article/details/3964766
+
+1. 请求头Host字段,一个服务器多个网站
+2. 长链接
+3. 文件断点续传
+3. 身份认证,状态管理,Cache缓存
+
+## Ajax
+
 # *NIX
 
 ## unix进程间通信方式(IPC)
@@ -813,6 +968,18 @@ def fib(i):
     if i<2: 
         return 1 
     return fib(i-1)+fib(i-2)
+```
+
+第三种方法
+
+```python
+def fib(n):
+    a, b = 0, 1
+    while a < n:
+        print a,
+        a, b  = b, a + b
+    print
+fib(1000)
 ```
 
 ## 2 变态台阶问题

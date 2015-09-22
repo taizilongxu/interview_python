@@ -880,7 +880,7 @@ Socket=Ip address+ TCP/UDP + port
 
 推荐: http://www.cnblogs.com/skynet/archive/2012/11/28/2792503.html
 
-304 not midifyide
+304 Not Modified
 
 ## 20 HTTP1.0和HTTP1.1
 

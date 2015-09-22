@@ -79,7 +79,7 @@
     - [18 socket](#18-socket)
     - [19 浏览器缓存](#19-)
     - [20 HTTP1.0和HTTP1.1](#20-http10http11)
-    - [Ajax](#ajax)
+    - [21 Ajax](#21-ajax)
 - [*NIX](#nix)
     - [unix进程间通信方式(IPC)](#unixipc)
 - [数据结构](#)
@@ -258,7 +258,7 @@ AttributeError: myClass instance has no attribute '__superprivate'
 
 ## 8 字符串格式化:%和.format
 
-.format在许多方面看起来更便利.你可以重用参数,但是你用%就不行.最烦人的是%它无法同时传递一个变量和元组.你可能会想下面的代码不会有什么问题:
+.format在许多方面看起来更便利.对于`%`最烦人的是它无法同时传递一个变量和元组.你可能会想下面的代码不会有什么问题:
 
 ```
 "hi there %s" % name

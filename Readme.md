@@ -275,7 +275,7 @@ AttributeError: myClass instance has no attribute '__superprivate'
 你为什么不用它?
 
 * 不知道它(在读这个之前)
-* 为了和Python2.5兼容
+* 为了和Python2.5兼容(譬如logging库建议使用`%`([issue #4](https://github.com/taizilongxu/interview_python/issues/4)))
 
 http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 

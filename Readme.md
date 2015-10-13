@@ -453,6 +453,25 @@ class MyClass:
   ...
 ```
 
+### 4 import方法
+
+作为python的模块是天然的单例模式
+
+```python
+# mysingleton.py
+class My_Singleton(object):
+    def foo(self):
+        pass
+
+my_singleton = My_Singleton()
+
+# to use
+from mysingleton import my_singleton
+
+my_singleton.foo()
+
+```
+
 ## 17 Python中的作用域
 
 Python 中，一个变量的作用域总是由在代码中被赋值的地方所决定的。

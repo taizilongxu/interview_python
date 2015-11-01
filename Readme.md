@@ -122,6 +122,8 @@
 a = 1
 def fun(a):
     a = 2
+
+fun(a)
 print a  # 1
 ```
 
@@ -129,6 +131,8 @@ print a  # 1
 a = []
 def fun(a):
     a.append(1)
+
+fun(a)
 print a  # [1]
 ```
 
@@ -224,7 +228,13 @@ print Person.name  # [1]
 可能你见过列表推导时,却没有见过字典推导式,在2.7中才加入的:
 
 ```python
-d = {key: value for (key, value) in iterable}
+d = {key: value for key, value in iterable}
+```
+
+对于 2.7 之前的版本，可以使用下面的方式：
+
+```python
+d = dict((key, value) for key, value in iterable)
 ```
 
 ## 7 Python中单下划线和双下划线

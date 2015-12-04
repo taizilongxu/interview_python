@@ -1,41 +1,41 @@
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
 **Table of Contents**
 
-- [Python语言特性](#python)
-    - [1 Python的函数参数传递](#1-python)
-    - [2 Python中的元类(metaclass)](#2-pythonmetaclass)
-    - [3 @staticmethod和@classmethod](#3-staticmethodclassmethod)
-    - [4 类变量和实例变量](#4-)
-    - [5 Python自省](#5-python)
-    - [6 字典推导式](#6-)
-    - [7 Python中单下划线和双下划线](#7-python)
-    - [8 字符串格式化:%和.format](#8-format)
-    - [9 迭代器和生成器](#9-)
-    - [10 `*args` and `**kwargs`](#10-args-and-kwargs)
-    - [11 面向切面编程AOP和装饰器](#11-aop)
-    - [12 鸭子类型](#12-)
-    - [13 Python中重载](#13-python)
-    - [14 新式类和旧式类](#14-)
-    - [15 `__new__`和`__init__`的区别](#15-newinit)
-    - [16 单例模式](#16-)
+- [Python语言特性](#python)                                                   推荐指数                    难度指数
+    - [1 Python的函数参数传递](#1-python)                                     ****                        *
+    - [2 Python中的元类(metaclass)](#2-pythonmetaclass)                       *                           *****
+    - [3 @staticmethod和@classmethod](#3-staticmethodclassmethod)             **                          ****
+    - [4 类变量和实例变量](#4-)                                               ***                         ***
+    - [5 Python自省](#5-python)                                               ***                         ***
+    - [6 字典推导式](#6-)                                                     *                           **
+    - [7 Python中单下划线和双下划线](#7-python)                               **                          *
+    - [8 字符串格式化:%和.format](#8-format)                                  **                          ***
+    - [9 迭代器和生成器](#9-)                                                 *****                       ***
+    - [10 `*args` and `**kwargs`](#10-args-and-kwargs)                        ****                        **
+    - [11 面向切面编程AOP和装饰器](#11-aop)                                   ****                        ***
+    - [12 鸭子类型](#12-)                                                     *                           **
+    - [13 Python中重载](#13-python)                                           ***                         ***
+    - [14 新式类和旧式类](#14-)                                               ****                        ****
+    - [15 `__new__`和`__init__`的区别](#15-newinit)                           **                          ***
+    - [16 单例模式](#16-)                                                     **                          ****
         - [1 使用`__new__`方法](#1-new)
         - [2 共享属性](#2-)
         - [3 装饰器版本](#3-)
-    - [17 Python中的作用域](#17-python)
-    - [18 GIL线程全局锁](#18-gil)
-    - [19 协程](#19-)
-    - [20 闭包](#20-)
-    - [21 lambda函数](#21-lambda)
-    - [22 Python函数式编程](#22-python)
-    - [23 Python里的拷贝](#23-python)
-    - [24 Python垃圾回收机制](#24-python)
+    - [17 Python中的作用域](#17-python)                                       *                           ***
+    - [18 GIL线程全局锁](#18-gil)                                             ***                         *****
+    - [19 协程](#19-)                                                         ****                        *****
+    - [20 闭包](#20-)                                                         ****                        ***
+    - [21 lambda函数](#21-lambda)                                             ***                         ***
+    - [22 Python函数式编程](#22-python)                                       ***                         ****
+    - [23 Python里的拷贝](#23-python)                                         *****                       ***
+    - [24 Python垃圾回收机制](#24-python)                                     ****                        *****
         - [1 引用计数](#1-)
         - [2 标记-清除机制](#2--)
         - [3 分代技术](#3-)
-    - [25 Python的List](#25-pythonlist)
-    - [26 Python的is](#26-pythonis)
-    - [27 read,readline和readlines](#27-readreadlinereadlines)
-    - [28 Python2和3的区别](#28-python23)
+    - [25 Python的List, List 与 Tuple 区别](#25-pythonlist)                   ****                        **
+    - [26 Python的is](#26-pythonis)                                           ****                        **
+    - [27 read,readline和readlines](#27-readreadlinereadlines)                ***                         *
+    - [28 Python2和3的区别](#28-python23)                                     **                          ***
 - [操作系统](#)
     - [1 select,poll和epoll](#1-selectpollepoll)
     - [2 调度算法](#2-)

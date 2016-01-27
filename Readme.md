@@ -627,7 +627,7 @@ is是对比地址,==是对比值
 * readlines   读取整个文件到一个迭代器以供我们遍历
 
 ## 28 Python2和3的区别
-
+推荐：[Python 2.7.x 与 Python 3.x 的主要差异](http://chenqx.github.io/2014/11/10/Key-differences-between-Python-2-7-x-and-Python-3-x/)
 
 
 # 操作系统
@@ -654,11 +654,11 @@ epoll改了三个缺点.
 
 ## 2 调度算法
 
-1. 先来先服务
-2. 短作业优先
-3. 最高优先权调度
-1. 时间片轮转
-2. 多级反馈队列调度
+1. 先来先服务(FCFS, First Come First Serve)
+2. 短作业优先(SJF, Shortest Job First)
+3. 最高优先权调度(Priority Scheduling)
+4. 时间片轮转(RR, Round Robin)
+5. 多级反馈队列调度(multilevel feedback queue scheduling)
 
 实时调度算法:
 
@@ -799,7 +799,7 @@ InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应�
 
 ## 3 ARP协议
 
-地址解析协议(Address Resolution Protocol): 根据IP地址获取物理地址的一个TCP/IP协
+地址解析协议(Address Resolution Protocol): 根据IP地址获取物理地址的一个TCP/IP协议
 
 ## 4 urllib和urllib2的区别
 
@@ -810,10 +810,36 @@ InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应�
 
 
 ## 5 Post和Get
+[GET和POST有什么区别？及为什么网上的多数答案都是错的](http://www.cnblogs.com/nankezhishi/archive/2012/06/09/getandpost.html)
+
+get: [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616#section-9.3)
+post: [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616#section-9.5)
+
+
 
 ## 6 Cookie和Session
+||Cookie|Session|
+|:-|:--|
+|储存位置|客户端|服务器端|
+|目的|跟踪会话，也可以保存用户偏好设置或者保存用户名密码等|跟踪会话|
+|安全性|不安全|安全|
+
+session技术是要使用到cookie的，之所以出现session技术，主要是为了安全。
 
 ## 7 apache和nginx的区别
+
+nginx 相对 apache 的优点：
+* 轻量级，同样起web 服务，比apache 占用更少的内存及资源
+* 抗并发，nginx 处理请求是异步非阻塞的，支持更多的并发连接，而apache 则是阻塞型的，在高并发下nginx 能保持低资源低消耗高性能
+* 配置简洁
+* 高度模块化的设计，编写模块相对简单
+* 社区活跃
+
+apache 相对nginx 的优点：
+* rewrite ，比nginx 的rewrite 强大
+* 模块超多，基本想到的都可以找到
+* 少bug ，nginx 的bug 相对较多
+* 超稳定
 
 ## 8 网站用户密码保存
 
@@ -877,9 +903,12 @@ RPC（Remote Procedure Call Protocol）——远程过程调用协议，它是�
 进化的顺序: RPC -> SOAP -> RESTful
 
 ## 15 CGI和WSGI
+CGI是通用网关接口，是连接web服务器和应用程序的接口，用户通过CGI来获取动态数据或文件等。
+CGI程序是一个独立的程序，它可以用几乎所有语言来写，包括perl，c，lua，python等等。
 
+WSGI, Web Server Gateway Interface，是Python应用程序或框架和Web服务器之间的一种接口，WSGI的其中一个目的就是让用户可以用统一的语言(Python)编写前后端。
 
-
+官方说明：[PEP-3333](https://www.python.org/dev/peps/pep-3333/)
 
 ## 16 中间人攻击
 
@@ -913,6 +942,7 @@ Socket=Ip address+ TCP/UDP + port
 3. 身份认证,状态管理,Cache缓存
 
 ## 21 Ajax
+AJAX,Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）, 是与在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术。
 
 # *NIX
 
@@ -953,18 +983,18 @@ fib = lambda n: 1 if n <= 2 else fib(n - 1) + fib(n - 2)
 第二种记忆方法
 
 ```python
-def memo(func): 
-    cache={}    
-    def wrap(*args): 
-        if args not in cache: 
-            cache[args]=func(*args) 
-        return cache[args] 
-    return wrap 
+def memo(func):
+    cache={}
+    def wrap(*args):
+        if args not in cache:
+            cache[args]=func(*args)
+        return cache[args]
+    return wrap
 
-@memo 
-def fib(i): 
-    if i<2: 
-        return 1 
+@memo
+def fib(i):
+    if i<2:
+        return 1
     return fib(i-1)+fib(i-2)
 ```
 

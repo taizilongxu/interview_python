@@ -37,6 +37,7 @@
     - [26 Python的is](#26-python的is)
     - [27 read,readline和readlines](#27-readreadline和readlines)
     - [28 Python2和3的区别](#28-python2和3的区别)
+    - [29 super.__init__()](#29-super-init)
 - [操作系统](#操作系统)
     - [1 select,poll和epoll](#1-selectpoll和epoll)
     - [2 调度算法](#2-调度算法)
@@ -659,6 +660,12 @@ is是对比地址,==是对比值
 ## 28 Python2和3的区别
 推荐：[Python 2.7.x 与 Python 3.x 的主要差异](http://chenqx.github.io/2014/11/10/Key-differences-between-Python-2-7-x-and-Python-3-x/)
 
+## 29 super init
+super() lets you avoid referring to the base class explicitly, which can be nice. But the main advantage comes with multiple inheritance, where all sorts of fun stuff can happen. See the standard docs on super if you haven't already.
+
+Note that the syntax changed in Python 3.0: you can just say super().__init__() instead of super(ChildB, self).__init__() which IMO is quite a bit nicer.
+
+http://stackoverflow.com/questions/576169/understanding-python-super-with-init-methods
 
 # 操作系统
 

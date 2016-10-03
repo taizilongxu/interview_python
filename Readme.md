@@ -38,6 +38,7 @@
     - [27 read,readline和readlines](#27-readreadline和readlines)
     - [28 Python2和3的区别](#28-python2和3的区别)
     - [29 super.__init__()](#29-super-init)
+    - [30 range-and-xrange](#30-range-and-xrange)
 - [操作系统](#操作系统)
     - [1 select,poll和epoll](#1-selectpoll和epoll)
     - [2 调度算法](#2-调度算法)
@@ -666,6 +667,16 @@ super() lets you avoid referring to the base class explicitly, which can be nice
 Note that the syntax changed in Python 3.0: you can just say super().__init__() instead of super(ChildB, self).__init__() which IMO is quite a bit nicer.
 
 http://stackoverflow.com/questions/576169/understanding-python-super-with-init-methods
+
+## 30 range and xrange
+都在循环时使用，xrange内存性能更好。
+for i in range(0, 20):
+for i in xrange(0, 20):
+What is the difference between range and xrange functions in Python 2.X?
+ range creates a list, so if you do range(1, 10000000) it creates a list in memory with 9999999 elements.
+ xrange is a sequence object that evaluates lazily.
+
+http://stackoverflow.com/questions/94935/what-is-the-difference-between-range-and-xrange-functions-in-python-2-x
 
 # 操作系统
 

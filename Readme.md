@@ -859,6 +859,7 @@ InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应�
 
 ## 5 Post和Get
 [GET和POST有什么区别？及为什么网上的多数答案都是错的](http://www.cnblogs.com/nankezhishi/archive/2012/06/09/getandpost.html)
+[知乎回答](https://www.zhihu.com/question/31640769?rf=37401322)
 
 get: [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616#section-9.3)
 post: [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616#section-9.5)

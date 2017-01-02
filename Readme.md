@@ -112,7 +112,7 @@
     - [19 求两棵树是否相同](#19-求两棵树是否相同)
     - [20 前序中序求后序](#20-前序中序求后序)
     - [21 单链表逆置](#21-单链表逆置)
-
+    - [22 两个字符串是否是变位词](#22-两个字符串是否是变位词)
 <!-- markdown-toc end -->
 
 # Python语言特性
@@ -847,7 +847,7 @@ InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应�
 
 ## 3 ARP协议
 
-地址解析协议(Address Resolution Protocol): 根据IP地址获取物理地址的一个TCP/IP协议
+地址解析协议(Address Resolution Protocol)，其基本功能为透过目标设备的IP地址，查询目标的MAC地址，以保证通信的顺利进行。它是IPv4网络层必不可少的协议，不过在IPv6中已不再适用，并被邻居发现协议（NDP）所替代。
 
 ## 4 urllib和urllib2的区别
 
@@ -1437,3 +1437,87 @@ while root:
     print root.data
     root = root.next
 ```
+
+## 22 两个字符串是否是变位词
+
+```python
+class Anagram:
+    """
+    @:param s1: The first string
+    @:param s2: The second string
+    @:return true or false
+    """
+    def Solution1(s1,s2):
+        alist = list(s2)
+
+        pos1 = 0
+        stillOK = True
+
+        while pos1 < len(s1) and stillOK:
+            pos2 = 0
+            found = False
+            while pos2 < len(alist) and not found:
+                if s1[pos1] == alist[pos2]:
+                    found = True
+                else:
+                    pos2 = pos2 + 1
+
+            if found:
+                alist[pos2] = None
+            else:
+                stillOK = False
+
+            pos1 = pos1 + 1
+
+        return stillOK
+
+    print(Solution1('abcd','dcba'))
+
+    def Solution2(s1,s2):
+        alist1 = list(s1)
+        alist2 = list(s2)
+
+        alist1.sort()
+        alist2.sort()
+
+
+        pos = 0
+        matches = True
+
+        while pos < len(s1) and matches:
+            if alist1[pos] == alist2[pos]:
+                pos = pos + 1
+            else:
+                matches = False
+
+        return matches
+
+    print(Solution2('abcde','edcbg'))
+
+    def Solution3(s1,s2):
+        c1 = [0]*26
+        c2 = [0]*26
+
+        for i in range(len(s1)):
+            pos = ord(s1[i])-ord('a')
+            c1[pos] = c1[pos] + 1
+
+        for i in range(len(s2)):
+            pos = ord(s2[i])-ord('a')
+            c2[pos] = c2[pos] + 1
+
+        j = 0
+        stillOK = True
+        while j<26 and stillOK:
+            if c1[j] == c2[j]:
+                j = j + 1
+            else:
+                stillOK = False
+
+        return stillOK
+
+    print(Solution3('apple','pleap'))
+
+```
+
+

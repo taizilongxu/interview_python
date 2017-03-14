@@ -37,6 +37,8 @@
     - [26 Python的is](#26-python的is)
     - [27 read,readline和readlines](#27-readreadline和readlines)
     - [28 Python2和3的区别](#28-python2和3的区别)
+    - [29 super.`__init__`()](#29-super-init)
+    - [30 range-and-xrange](#30-range-and-xrange)
 - [操作系统](#操作系统)
     - [1 select,poll和epoll](#1-selectpoll和epoll)
     - [2 调度算法](#2-调度算法)
@@ -110,7 +112,7 @@
     - [19 求两棵树是否相同](#19-求两棵树是否相同)
     - [20 前序中序求后序](#20-前序中序求后序)
     - [21 单链表逆置](#21-单链表逆置)
-
+    - [22 两个字符串是否是变位词](#22-两个字符串是否是变位词)
 <!-- markdown-toc end -->
 
 # Python语言特性
@@ -136,6 +138,35 @@ print a  # [1]
 ```
 
 所有的变量都可以理解是内存中一个对象的“引用”，或者，也可以看似c中void*的感觉。
+
+通过`id`来看引用`a`的内存地址可以比较理解：
+
+```python
+a = 1
+def fun(a):
+    print "func_in",id(a)   # func_in 41322472
+    a = 2
+    print "re-point",id(a), id(2)   # re-point 41322448 41322448
+print "func_out",id(a), id(1)  # func_out 41322472 41322472
+fun(a)
+print a  # 1
+```
+
+注：具体的值在不同电脑上运行时可能不同。
+
+可以看到，在执行完`a = 2`之后，`a`引用中保存的值，即内存地址发生变化，由原来`1`对象的所在的地址变成了`2`这个实体对象的内存地址。
+
+而第2个例子`a`引用保存的内存值就不会发生变化：
+
+```python
+a = []
+def fun(a):
+    print "func_in",id(a)  # func_in 53629256
+    a.append(1)
+print "func_out",id(a)     # func_out 53629256
+fun(a)
+print a  # [1]
+```
 
 这里记住的是类型是属于对象的，而不是变量。而对象有两种,“可更改”（mutable）与“不可更改”（immutable）对象。在python中，strings, tuples, 和numbers是不可更改的对象，而list,dict等则是可以修改的对象。(这就是这个问题的重点)
 
@@ -630,6 +661,22 @@ is是对比地址,==是对比值
 ## 28 Python2和3的区别
 推荐：[Python 2.7.x 与 Python 3.x 的主要差异](http://chenqx.github.io/2014/11/10/Key-differences-between-Python-2-7-x-and-Python-3-x/)
 
+## 29 super init
+super() lets you avoid referring to the base class explicitly, which can be nice. But the main advantage comes with multiple inheritance, where all sorts of fun stuff can happen. See the standard docs on super if you haven't already.
+
+Note that the syntax changed in Python 3.0: you can just say super().`__init__`() instead of super(ChildB, self).`__init__`() which IMO is quite a bit nicer.
+
+http://stackoverflow.com/questions/576169/understanding-python-super-with-init-methods
+
+## 30 range and xrange
+都在循环时使用，xrange内存性能更好。
+for i in range(0, 20):
+for i in xrange(0, 20):
+What is the difference between range and xrange functions in Python 2.X?
+ range creates a list, so if you do range(1, 10000000) it creates a list in memory with 9999999 elements.
+ xrange is a sequence object that evaluates lazily.
+
+http://stackoverflow.com/questions/94935/what-is-the-difference-between-range-and-xrange-functions-in-python-2-x
 
 # 操作系统
 
@@ -730,7 +777,7 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 
 ## 6 虚拟内存技术
 
-虚拟存储器是值具有请求调入功能和置换功能,能从逻辑上对内存容量加以扩充的一种存储系统.
+虚拟存储器是指具有请求调入功能和置换功能,能从逻辑上对内存容量加以扩充的一种存储系统.
 
 ## 7 分页和分段
 
@@ -800,7 +847,7 @@ InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应�
 
 ## 3 ARP协议
 
-地址解析协议(Address Resolution Protocol): 根据IP地址获取物理地址的一个TCP/IP协议
+地址解析协议(Address Resolution Protocol)，其基本功能为透过目标设备的IP地址，查询目标的MAC地址，以保证通信的顺利进行。它是IPv4网络层必不可少的协议，不过在IPv6中已不再适用，并被邻居发现协议（NDP）所替代。
 
 ## 4 urllib和urllib2的区别
 
@@ -812,6 +859,7 @@ InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应�
 
 ## 5 Post和Get
 [GET和POST有什么区别？及为什么网上的多数答案都是错的](http://www.cnblogs.com/nankezhishi/archive/2012/06/09/getandpost.html)
+[知乎回答](https://www.zhihu.com/question/31640769?rf=37401322)
 
 get: [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616#section-9.3)
 post: [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616#section-9.5)
@@ -1033,6 +1081,28 @@ f = lambda n: 1 if n < 2 else f(n - 1) + f(n - 2)
 ## 4 杨氏矩阵查找
 
 在一个m行n列二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+
+使用Step-wise线性搜索。
+
+```python
+def get_value(l, r, c):
+    return l[r][c]
+
+def find(l, x):
+    m = len(l) - 1
+    n = len(l[0]) - 1
+    r = 0
+    c = n
+    while c >= 0 and r <= m:
+        value = get_value(l, r, c)
+        if value == x:
+            return True
+        elif value > x:
+            c = c - 1
+        elif value < x:
+            r = r + 1
+    return False
+```
 
 ## 5 去除列表中的重复元素
 
@@ -1367,3 +1437,87 @@ while root:
     print root.data
     root = root.next
 ```
+
+## 22 两个字符串是否是变位词
+
+```python
+class Anagram:
+    """
+    @:param s1: The first string
+    @:param s2: The second string
+    @:return true or false
+    """
+    def Solution1(s1,s2):
+        alist = list(s2)
+
+        pos1 = 0
+        stillOK = True
+
+        while pos1 < len(s1) and stillOK:
+            pos2 = 0
+            found = False
+            while pos2 < len(alist) and not found:
+                if s1[pos1] == alist[pos2]:
+                    found = True
+                else:
+                    pos2 = pos2 + 1
+
+            if found:
+                alist[pos2] = None
+            else:
+                stillOK = False
+
+            pos1 = pos1 + 1
+
+        return stillOK
+
+    print(Solution1('abcd','dcba'))
+
+    def Solution2(s1,s2):
+        alist1 = list(s1)
+        alist2 = list(s2)
+
+        alist1.sort()
+        alist2.sort()
+
+
+        pos = 0
+        matches = True
+
+        while pos < len(s1) and matches:
+            if alist1[pos] == alist2[pos]:
+                pos = pos + 1
+            else:
+                matches = False
+
+        return matches
+
+    print(Solution2('abcde','edcbg'))
+
+    def Solution3(s1,s2):
+        c1 = [0]*26
+        c2 = [0]*26
+
+        for i in range(len(s1)):
+            pos = ord(s1[i])-ord('a')
+            c1[pos] = c1[pos] + 1
+
+        for i in range(len(s2)):
+            pos = ord(s2[i])-ord('a')
+            c2[pos] = c2[pos] + 1
+
+        j = 0
+        stillOK = True
+        while j<26 and stillOK:
+            if c1[j] == c2[j]:
+                j = j + 1
+            else:
+                stillOK = False
+
+        return stillOK
+
+    print(Solution3('apple','pleap'))
+
+```
+
+

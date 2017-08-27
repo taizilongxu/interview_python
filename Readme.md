@@ -736,6 +736,7 @@ epoll改了三个缺点.
 4. 解除死锁
     1. 剥夺资源
     2. 撤销进程
+
 死锁概念处理策略详细介绍:https://wizardforcel.gitbooks.io/wangdaokaoyan-os/content/10.html
 
 ## 4 程序编译与链接

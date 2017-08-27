@@ -708,6 +708,8 @@ epoll改了三个缺点.
 4. 时间片轮转(RR, Round Robin)
 5. 多级反馈队列调度(multilevel feedback queue scheduling)
 
+常见的调度算法总结:http://www.jianshu.com/p/6edf8174c1eb
+
 实时调度算法:
 
 1. 最早截至时间优先 EDF

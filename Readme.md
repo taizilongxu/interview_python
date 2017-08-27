@@ -810,6 +810,7 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 ## 1 事务
 
 数据库事务(Database Transaction) ，是指作为单个逻辑工作单元执行的一系列操作，要么完全地执行，要么完全地不执行。
+彻底理解数据库事务: http://www.hollischuang.com/archives/898
 
 ## 2 数据库索引
 

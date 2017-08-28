@@ -1040,6 +1040,9 @@ AVL是严格平衡树，因此在增加或者删除节点的时候，根据不�
 
 所以简单说，如果你的应用中，搜索的次数远远大于插入和删除，那么选择AVL，如果搜索，插入删除次数几乎差不多，应该选择RB。
 
+红黑树详解: https://xieguanglei.github.io/blog/post/red-black-tree.html
+教你透彻了解红黑树: https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md
+
 # 编程题
 
 ## 1 台阶问题/斐波纳挈

@@ -988,7 +988,7 @@ WSGI, Web Server Gateway Interface，是Python应用程序或框架和Web服务�
 ## 17 c10k问题
 
 所谓c10k问题，指的是服务器同时支持成千上万个客户端的问题，也就是concurrent 10 000 connection（这也是c10k这个名字的由来）。
-推荐: http://www.kegel.com/c10k.html
+推荐: https://my.oschina.net/xianggao/blog/664275
 
 ## 18 socket
 

@@ -1375,27 +1375,29 @@ def node(l1, l2):
 
 ## 10 二分查找
 
+
 ```python
-def binarySearch(l, t):
-    low, high = 0, len(l) - 1
-    while low < high:
-        print low, high
-        mid = (low + high) / 2
-        if l[mid] > t:
-            high = mid
-        elif l[mid] < t:
-            low = mid + 1
+
+#coding:utf-8
+def binary_search(list,item):
+    low = 0
+    high = len(list)-1
+    while low<=high:
+        mid = (low+high)/2
+        guess = list[mid]
+        if guess>item:
+            high = mid-1
+        elif guess<item:
+            low = mid+1
         else:
             return mid
-    return low if l[low] == t else False
+    return None
+mylist = [1,3,5,7,9]
+print binary_search(mylist,3)
 
-if __name__ == '__main__':
-    l = [1, 4, 12, 45, 66, 99, 120, 444]
-    print binarySearch(l, 12)
-    print binarySearch(l, 1)
-    print binarySearch(l, 13)
-    print binarySearch(l, 444)
 ```
+
+参考: http://blog.csdn.net/u013205877/article/details/76411718
 
 ## 11 快排
 

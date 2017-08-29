@@ -1283,6 +1283,7 @@ def recursion_merge_sort2(l1, l2):
 
 再把旧列表加到新列表后面
 
+
 ```pyhton
 def loop_merge_sort(l1, l2):
     tmp = []
@@ -1297,6 +1298,7 @@ def loop_merge_sort(l1, l2):
     tmp.extend(l2)
     return tmp
 ```
+
 
 ## 9 交叉链表求交点
 
@@ -1332,7 +1334,9 @@ def node(l1, l2):
 ```
 
 修改了一下:
-```
+
+
+```python
 #coding:utf-8
 class ListNode:
     def __init__(self, x):
@@ -1365,7 +1369,9 @@ def node(l1, l2):
         return
 ```
 
+
 思路: http://humaoli.blog.163.com/blog/static/13346651820141125102125995/
+
 
 ## 10 二分查找
 

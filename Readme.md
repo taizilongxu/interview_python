@@ -1160,7 +1160,11 @@ l2 = []
 [l2.append(i) for i in l1 if not i in l2]
 ```
 
-面试官提到的,先排序然后删除.
+sorted排序并且用列表推导式.
+
+l = ['b','c','d','b','c','a','a']
+[single.append(i) for i in sorted(l) if i not in single]
+print single
 
 ## 6 链表成对调换
 
@@ -1183,6 +1187,35 @@ class Solution:
             return next
         return head
 ```
+
+```python
+class ListNode:
+	def __init__(self, x):
+		self.val = x
+		self.next = None
+
+class nonrecurse(head):
+	if head is None or head.next is None:
+		return head
+	pre = None
+	cur = head
+	h = head
+	while cur:
+		h = cur
+
+		temp = cur.next
+		cur.next = pre
+
+		pre = cur
+		cur = temp
+	return h
+
+
+```
+
+思路: http://blog.csdn.net/feliciafay/article/details/6841115
+方法: http://www.xuebuyuan.com/2066385.html?mobile=1
+
 
 ## 7 创建字典的方法
 
@@ -1236,6 +1269,20 @@ def recursion_merge_sort2(l1, l2):
 
 循环算法
 
+思路：
+
+定义一个新的空列表
+
+比较两个列表的首个元素
+
+小的就插入到新列表里
+
+把已经插入新列表的元素从旧列表删除
+
+直到两个旧列表有一个为空
+
+再把旧列表加到新列表后面
+
 ```pyhton
 def loop_merge_sort(l1, l2):
     tmp = []
@@ -1283,6 +1330,42 @@ def node(l1, l2):
             l1 = l1.next
             l2 = l2.next
 ```
+
+修改了一下:
+```
+#coding:utf-8
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+def node(l1, l2):
+    length1, length2 = 0, 0
+    # 求两个链表长度
+    while l1.next:
+        l1 = l1.next#尾节点
+        length1 += 1
+    while l2.next:
+        l2 = l2.next#尾节点
+        length2 += 1
+
+    #如果相交
+    if l1.next == l2.next:
+        # 长的链表先走
+        if length1 > length2:
+            for _ in range(length1 - length2):
+                l1 = l1.next
+            return l1#返回交点
+        else:
+            for _ in range(length2 - length1):
+                l2 = l2.next
+            return l2#返回交点
+    # 如果不相交
+    else:
+        return
+```
+
+思路: http://humaoli.blog.163.com/blog/static/13346651820141125102125995/
 
 ## 10 二分查找
 

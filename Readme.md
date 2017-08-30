@@ -1402,44 +1402,50 @@ print binary_search(mylist,3)
 ## 11 快排
 
 ```python
-def qsort(seq):
-    if seq==[]:
-        return []
+#coding:utf-8
+def quicksort(list):
+    if len(list)<2:
+        return list
     else:
-        pivot=seq[0]
-        lesser=qsort([x for x in seq[1:] if x<pivot])
-        greater=qsort([x for x in seq[1:] if x>=pivot])
-        return lesser+[pivot]+greater
+        midpivot = list[0]
+        lessbeforemidpivot = [i for i in list[1:] if i<=midpivot]
+        biggerafterpivot = [i for i in list[1:] if i > midpivot]
+        finallylist = quicksort(lessbeforemidpivot)+[midpivot]+quicksort(biggerafterpivot)
+        return finallylist
 
-if __name__=='__main__':
-    seq=[5,6,78,9,0,-1,2,3,-65,12]
-    print(qsort(seq))
+print quicksort([2,4,6,7,1,2,5])
 ```
+
+递归基本思想: http://blog.csdn.net/morewindows/article/details/6684558
 
 ## 12 找零问题
 
+
 ```python
-def  coinChange(values, money, coinsUsed):
-    #values    T[1:n]数组
-    #valuesCounts   钱币对应的种类数
-    #money  找出来的总钱数
-    #coinsUsed   对应于目前钱币总数i所使用的硬币数目
-    for cents in range(1, money+1):
-        minCoins = cents     #从第一个开始到money的所有情况初始
-        for value in values:
-            if value <= cents:
-                temp = coinsUsed[cents - value] + 1
-                if temp < minCoins:
+
+#coding:utf-8
+#values是硬币的面值values = [ 25, 21, 10, 5, 1]
+#valuesCounts   钱币对应的种类数
+#money  找出来的总钱数
+#coinsUsed   对应于目前钱币总数i所使用的硬币数目
+
+def coinChange(values,valuesCounts,money,coinsUsed):
+    #遍历出从1到money所有的钱数可能
+    for cents in range(1,money+1):
+        minCoins = cents
+        #把所有的硬币面值遍历出来和钱数做对比
+        for kind in range(0,valuesCounts):
+            if (values[kind] <= cents):
+                temp = coinsUsed[cents - values[kind]] +1
+                if (temp < minCoins):
                     minCoins = temp
         coinsUsed[cents] = minCoins
-        print('面值为：{0} 的最小硬币数目为：{1} '.format(cents, coinsUsed[cents]) )
+        print ('面值:{0}的最少硬币使用数为:{1}'.format(cents, coinsUsed[cents]))
 
-if __name__ == '__main__':
-    values = [ 25, 21, 10, 5, 1]
-    money = 63
-    coinsUsed = {i:0 for i in range(money+1)}
-    coinChange(values, money, coinsUsed)
 ```
+
+思路: http://blog.csdn.net/wdxin1322/article/details/9501163
+方法: http://www.cnblogs.com/ChenxofHit/archive/2011/03/18/1988431.html
 
 ## 13 广度遍历和深度遍历二叉树
 

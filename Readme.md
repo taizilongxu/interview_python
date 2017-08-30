@@ -1188,35 +1188,6 @@ class Solution:
         return head
 ```
 
-```python
-class ListNode:
-	def __init__(self, x):
-		self.val = x
-		self.next = None
-
-class nonrecurse(head):
-	if head is None or head.next is None:
-		return head
-	pre = None
-	cur = head
-	h = head
-	while cur:
-		h = cur
-
-		temp = cur.next
-		cur.next = pre
-
-		pre = cur
-		cur = temp
-	return h
-
-
-```
-
-思路: http://blog.csdn.net/feliciafay/article/details/6841115
-方法: http://www.xuebuyuan.com/2066385.html?mobile=1
-
-
 ## 7 创建字典的方法
 
 ### 1 直接创建
@@ -1503,6 +1474,47 @@ if __name__ == '__main__':
 
 深度遍历改变顺序就OK了
 
+```python
+
+#coding:utf-8
+#二叉树的遍历
+#简单的二叉树节点类
+class Node(object):
+    def __init__(self,value,left,right):
+        self.value = value
+        self.left = left
+        self.right = right
+
+#中序遍历:遍历左子树,访问当前节点,遍历右子树
+
+def mid_travelsal(root):
+    if root.left is None:
+        mid_travelsal(root.left)
+    #访问当前节点
+    print(root.value)
+    if root.right is not None:
+        mid_travelsal(root.right)
+
+#前序遍历:访问当前节点,遍历左子树,遍历右子树
+
+def pre_travelsal(root):
+    print (root.value)
+    if root.left is not None:
+        pre_travelsal(root.left)
+    if root.right is not None:
+        pre_travelsal(root.right)
+
+#后续遍历:遍历左子树,遍历右子树,访问当前节点
+
+def post_trvelsal(root):
+    if root.left is not None:
+        post_trvelsal(root.left)
+    if root.right is not None:
+        post_trvelsal(root.right)
+    print (root.value)
+
+```
+
 ## 18 求最大树深
 
 ```python
@@ -1572,6 +1584,11 @@ while root:
     print root.data
     root = root.next
 ```
+
+思路: http://blog.csdn.net/feliciafay/article/details/6841115
+
+方法: http://www.xuebuyuan.com/2066385.html?mobile=1
+
 
 ## 22 两个字符串是否是变位词
 

@@ -1445,14 +1445,18 @@ def coinChange(values,valuesCounts,money,coinsUsed):
 ```
 
 思路: http://blog.csdn.net/wdxin1322/article/details/9501163
+
 方法: http://www.cnblogs.com/ChenxofHit/archive/2011/03/18/1988431.html
 
 ## 13 广度遍历和深度遍历二叉树
 
 给定一个数组，构建二叉树，并且按层次打印这个二叉树
 
-```python
+
 ## 14 二叉树节点
+
+```python
+
 class Node(object):
     def __init__(self, data, left=None, right=None):
         self.data = data
@@ -1461,7 +1465,12 @@ class Node(object):
 
 tree = Node(1, Node(3, Node(7, Node(0)), Node(6)), Node(2, Node(5), Node(4)))
 
+```
+
 ## 15 层次遍历
+
+```python
+
 def lookup(root):
     stack = [root]
     while stack:
@@ -1471,7 +1480,13 @@ def lookup(root):
             stack.append(current.left)
         if current.right:
             stack.append(current.right)
+
+```
+
 ## 16 深度遍历
+
+```python
+
 def deep(root):
     if not root:
         return

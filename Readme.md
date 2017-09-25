@@ -113,6 +113,7 @@
     - [20 前序中序求后序](#20-前序中序求后序)
     - [21 单链表逆置](#21-单链表逆置)
     - [22 两个字符串是否是变位词](#22-两个字符串是否是变位词)
+    - [23 O(1)时间复杂度实现入栈、出栈、获得栈中最小元素、获得栈中最大元素](#23-O(1)时间复杂度实现入栈、出栈、获得栈中最小元素、获得栈中最大元素)
 <!-- markdown-toc end -->
 
 # Python语言特性
@@ -1673,3 +1674,71 @@ class Anagram:
 ```
 
 
+## 23 O(1)时间复杂度实现入栈、出栈、获得栈中最小元素、获得栈中最大元素
+
+```python
+#定义栈结构，根据栈的后进先出特性，增加辅助栈，来存储当前状态下数据栈中的最小、最大元素。
+class Stack(object):
+
+    def __init__(self):
+        self.data = []
+        self.minValue = []
+        self.maxValue = []
+
+    def push(self,data):
+        self.data.append(data)
+        if len(self.minValue)==0:
+            self.minValue.append(data)
+        else:
+            if data <= self.minValue[-1]:
+                self.minValue.append(data)
+        if len(self.maxValue)==0:
+            self.maxValue.append(data)
+        else:
+            if data>=self.maxValue[-1]:
+                self.maxValue.append(data)
+
+    def pop(self):
+        if len(self.data)==0:
+            return None
+        else:
+            temp = self.data.pop()
+            if temp == self.minValue[-1]:
+                self.minValue.pop()
+            if temp == self.maxValue[-1]:
+                self.maxValue.pop()
+            return temp
+
+    def min(self):
+        if len(self.data)==0:
+            return None
+        else:
+            return self.minValue[-1]
+
+    def max(self):
+        if len(self.data)==0:
+            return None
+        else:
+            return self.maxValue[-1]
+
+    def show(self):
+        print("stack data")
+        for data in self.data:
+            print(data)
+        print("min",self.min())
+        print("max",self.max())
+
+if __name__ == "__main__":
+    s = Stack()
+    s.push(2)
+    s.push(1)
+    s.show()
+    s.push(4)
+    s.push(3)
+    s.push(2)
+    s.show()
+    s.pop()
+    s.show()
+    s.pop()
+    s.show()
+```

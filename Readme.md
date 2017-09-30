@@ -320,6 +320,20 @@ http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 
 这是中文版: http://taizilongxu.gitbooks.io/stackoverflow-about-python/content/1/README.html
 
+这里有个关于生成器的创建问题面试官有考：
+问：  将列表生成式中[]改成() 之后数据结构是否改变？ 
+答案：是，从列表变为生成器
+
+```python
+>>> L = [x*x for x in range(10)]
+>>> L
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> g = (x*x for x in range(10))
+>>> g
+<generator object <genexpr> at 0x0000028F8B774200>
+```
+通过列表生成式，可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含百万元素的列表，不仅是占用很大的内存空间，如：我们只需要访问前面的几个元素，后面大部分元素所占的空间都是浪费的。因此，没有必要创建完整的列表（节省大量内存空间）。在Python中，我们可以采用生成器：边循环，边计算的机制—>generator
+
 ## 10 `*args` and `**kwargs`
 
 用`*args`和`**kwargs`只是为了方便并没有强制使用它们.

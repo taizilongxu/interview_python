@@ -1,6 +1,7 @@
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
 **Table of Contents**
 
+
    * [Python语言特性](#python语言特性)
       * [1 Python的函数参数传递](#1-python的函数参数传递)
       * [2 Python中的元类(metaclass)](#2-python中的元类metaclass)
@@ -359,6 +360,20 @@ http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 这个是stackoverflow里python排名第一的问题,值得一看: http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
 
 这是中文版: http://taizilongxu.gitbooks.io/stackoverflow-about-python/content/1/README.html
+
+这里有个关于生成器的创建问题面试官有考：
+问：  将列表生成式中[]改成() 之后数据结构是否改变？ 
+答案：是，从列表变为生成器
+
+```python
+>>> L = [x*x for x in range(10)]
+>>> L
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> g = (x*x for x in range(10))
+>>> g
+<generator object <genexpr> at 0x0000028F8B774200>
+```
+通过列表生成式，可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含百万元素的列表，不仅是占用很大的内存空间，如：我们只需要访问前面的几个元素，后面大部分元素所占的空间都是浪费的。因此，没有必要创建完整的列表（节省大量内存空间）。在Python中，我们可以采用生成器：边循环，边计算的机制—>generator
 
 ## 10 `*args` and `**kwargs`
 
@@ -778,6 +793,8 @@ epoll改了三个缺点.
 4. 时间片轮转(RR, Round Robin)
 5. 多级反馈队列调度(multilevel feedback queue scheduling)
 
+常见的调度算法总结:http://www.jianshu.com/p/6edf8174c1eb
+
 实时调度算法:
 
 1. 最早截至时间优先 EDF
@@ -805,6 +822,7 @@ epoll改了三个缺点.
     1. 剥夺资源
     2. 撤销进程
 
+死锁概念处理策略详细介绍:https://wizardforcel.gitbooks.io/wangdaokaoyan-os/content/10.html
 
 ## 4 程序编译与链接
 
@@ -877,6 +895,7 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 ## 1 事务
 
 数据库事务(Database Transaction) ，是指作为单个逻辑工作单元执行的一系列操作，要么完全地执行，要么完全地不执行。
+彻底理解数据库事务: http://www.hollischuang.com/archives/898
 
 ## 2 数据库索引
 
@@ -915,7 +934,10 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 
 乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性。
 
+乐观锁与悲观锁的具体区别: http://www.cnblogs.com/Bob-FD/p/3352216.html
+
 ## 5 MVCC
+
 
 > ​	全称是Multi-Version Concurrent Control，即多版本并发控制，在MVCC协议下，每个读操作会看到一个一致性的snapshot，并且可以实现非阻塞的读。MVCC允许数据具有多个版本，这个版本可以是时间戳或者是全局递增的事务ID，在同一个时间点，不同的事务看到的数据是不同的。
 
@@ -939,17 +961,21 @@ innodb会为每一行添加两个字段，分别表示该行**创建的版本**�
 >  参考：[MVCC浅析](http://blog.csdn.net/chosen0ne/article/details/18093187)
 
 
+
 ## 6 MyISAM和InnoDB
 
 MyISAM 适合于一些需要大量查询的应用，但其对于有大量写操作并不是很好。甚至你只是需要update一个字段，整个表都会被锁起来，而别的进程，就算是读进程都无法操作直到读操作完成。另外，MyISAM 对于 SELECT COUNT(*) 这类的计算是超快无比的。
 
 InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应用，它会比 MyISAM 还慢。他是它支持“行锁” ，于是在写操作比较多的时候，会更优秀。并且，他还支持更多的高级应用，比如：事务。
 
+mysql 数据库引擎: http://www.cnblogs.com/0201zcr/p/5296843.html
+MySQL存储引擎－－MyISAM与InnoDB区别: https://segmentfault.com/a/1190000008227211
+
 # 网络
 
 ## 1 三次握手
 
-1. 客户端通过向服务器端发送一个SYN来创建一个主动打开，作为三路握手的一部分。客户端把这段连接的序号设定为随机数 A。
+1. 客户端通过向服务器端发送一个SYN来创建一个主动打开，作为三次握手的一部分。客户端把这段连接的序号设定为随机数 A。
 2. 服务器端应当为一个合法的SYN回送一个SYN/ACK。ACK 的确认码应为 A+1，SYN/ACK 包本身又有一个随机序号 B。
 3. 最后，客户端再发送一个ACK。当服务端受到这个ACK的时候，就完成了三路握手，并进入了连接创建状态。此时包序号被设定为收到的确认号 A+1，而响应则为 B+1。
 
@@ -961,6 +987,8 @@ _注意: 中断连接端可以是客户端，也可以是服务器端. 下面仅
 2. 服务器接收到带有 FIN = 1 的数据分段, 发送带有 ACK = 1 的剩余数据分段, 确认收到客户端发来的 FIN 信息.
 3. 服务器等到所有数据传输结束, 向客户端发送一个带有 FIN = 1 的数据分段, 并进入 CLOSE-WAIT 状态, 等待客户端发来带有 ACK = 1 的确认报文.
 4. 客户端收到服务器发来带有 FIN = 1 的报文, 返回 ACK = 1 的报文确认, 为了防止服务器端未收到需要重发, 进入 TIME-WAIT 状态. 服务器接收到报文后关闭连接. 客户端等待 2MSL 后未收到回复, 则认为服务器成功关闭, 客户端关闭连接.
+
+图解: http://blog.csdn.net/whuslei/article/details/6667471
 
 ## 3 ARP协议
 
@@ -1086,7 +1114,7 @@ WSGI, Web Server Gateway Interface，是Python应用程序或框架和Web服务�
 ## 17 c10k问题
 
 所谓c10k问题，指的是服务器同时支持成千上万个客户端的问题，也就是concurrent 10 000 connection（这也是c10k这个名字的由来）。
-推荐: http://www.kegel.com/c10k.html
+推荐: https://my.oschina.net/xianggao/blog/664275
 
 ## 18 socket
 
@@ -1108,6 +1136,54 @@ Socket=Ip address+ TCP/UDP + port
 2. 长链接
 3. 文件断点续传
 4. 身份认证,状态管理,Cache缓存
+
+HTTP请求8种方法介绍 
+HTTP/1.1协议中共定义了8种HTTP请求方法，HTTP请求方法也被叫做“请求动作”，不同的方法规定了不同的操作指定的资源方式。服务端也会根据不同的请求方法做不同的响应。
+
+GET
+
+GET请求会显示请求指定的资源。一般来说GET方法应该只用于数据的读取，而不应当用于会产生副作用的非幂等的操作中。
+
+GET会方法请求指定的页面信息，并返回响应主体，GET被认为是不安全的方法，因为GET方法会被网络蜘蛛等任意的访问。
+
+HEAD
+
+HEAD方法与GET方法一样，都是向服务器发出指定资源的请求。但是，服务器在响应HEAD请求时不会回传资源的内容部分，即：响应主体。这样，我们可以不传输全部内容的情况下，就可以获取服务器的响应头信息。HEAD方法常被用于客户端查看服务器的性能。
+
+POST
+
+POST请求会 向指定资源提交数据，请求服务器进行处理，如：表单数据提交、文件上传等，请求数据会被包含在请求体中。POST方法是非幂等的方法，因为这个请求可能会创建新的资源或/和修改现有资源。
+
+PUT
+
+PUT请求会身向指定资源位置上传其最新内容，PUT方法是幂等的方法。通过该方法客户端可以将指定资源的最新数据传送给服务器取代指定的资源的内容。
+
+DELETE
+
+DELETE请求用于请求服务器删除所请求URI（统一资源标识符，Uniform Resource Identifier）所标识的资源。DELETE请求后指定资源会被删除，DELETE方法也是幂等的。
+
+CONNECT
+
+CONNECT方法是HTTP/1.1协议预留的，能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接与非加密的HTTP代理服务器的通信。
+
+OPTIONS
+
+OPTIONS请求与HEAD类似，一般也是用于客户端查看服务器的性能。 这个方法会请求服务器返回该资源所支持的所有HTTP请求方法，该方法会用’*’来代替资源名称，向服务器发送OPTIONS请求，可以测试服务器功能是否正常。JavaScript的XMLHttpRequest对象进行CORS跨域资源共享时，就是使用OPTIONS方法发送嗅探请求，以判断是否有对指定资源的访问权限。 允许
+
+TRACE
+
+TRACE请求服务器回显其收到的请求信息，该方法主要用于HTTP请求的测试或诊断。
+
+HTTP/1.1之后增加的方法
+
+在HTTP/1.1标准制定之后，又陆续扩展了一些方法。其中使用中较多的是 PATCH 方法：
+
+PATCH
+
+PATCH方法出现的较晚，它在2010年的RFC 5789标准中被定义。PATCH请求与PUT请求类似，同样用于资源的更新。二者有以下两点不同：
+
+但PATCH一般用于资源的部分更新，而PUT一般用于资源的整体更新。 
+当资源不存在时，PATCH会创建一个新的资源，而PUT只会对已在资源进行更新。
 
 ## 21 Ajax
 AJAX,Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）, 是与在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术。
@@ -1137,6 +1213,10 @@ AVL是严格平衡树，因此在增加或者删除节点的时候，根据不�
 红黑是用非严格的平衡来换取增删节点时候旋转次数的降低；
 
 所以简单说，如果你的应用中，搜索的次数远远大于插入和删除，那么选择AVL，如果搜索，插入删除次数几乎差不多，应该选择RB。
+
+红黑树详解: https://xieguanglei.github.io/blog/post/red-black-tree.html
+
+教你透彻了解红黑树: https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md
 
 # 编程题
 
@@ -1254,7 +1334,11 @@ l2 = []
 [l2.append(i) for i in l1 if not i in l2]
 ```
 
-面试官提到的,先排序然后删除.
+sorted排序并且用列表推导式.
+
+l = ['b','c','d','b','c','a','a']
+[single.append(i) for i in sorted(l) if i not in single]
+print single
 
 ## 6 链表成对调换
 
@@ -1330,6 +1414,21 @@ def recursion_merge_sort2(l1, l2):
 
 >  循环算法
 
+思路：
+
+定义一个新的空列表
+
+比较两个列表的首个元素
+
+小的就插入到新列表里
+
+把已经插入新列表的元素从旧列表删除
+
+直到两个旧列表有一个为空
+
+再把旧列表加到新列表后面
+
+
 ```pyhton
 def loop_merge_sort(l1, l2):
     tmp = []
@@ -1344,6 +1443,7 @@ def loop_merge_sort(l1, l2):
     tmp.extend(l2)
     return tmp
 ```
+
 
 > pop弹出
 
@@ -1366,7 +1466,6 @@ def merge_sortedlist(a,b):
 print merge_sortedlist(a,b)
     
 ```
-
 
 
 ## 9 交叉链表求交点
@@ -1423,80 +1522,132 @@ def node(l1, l2):
             l2 = l2.next
 ```
 
-## 10 二分查找
+修改了一下:
+
 
 ```python
-def binarySearch(l, t):
-    low, high = 0, len(l) - 1
-    while low < high:
-        print low, high
-        mid = (low + high) / 2
-        if l[mid] > t:
-            high = mid
-        elif l[mid] < t:
-            low = mid + 1
+#coding:utf-8
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+def node(l1, l2):
+    length1, length2 = 0, 0
+    # 求两个链表长度
+    while l1.next:
+        l1 = l1.next#尾节点
+        length1 += 1
+    while l2.next:
+        l2 = l2.next#尾节点
+        length2 += 1
+
+    #如果相交
+    if l1.next == l2.next:
+        # 长的链表先走
+        if length1 > length2:
+            for _ in range(length1 - length2):
+                l1 = l1.next
+            return l1#返回交点
+        else:
+            for _ in range(length2 - length1):
+                l2 = l2.next
+            return l2#返回交点
+    # 如果不相交
+    else:
+        return
+```
+
+
+思路: http://humaoli.blog.163.com/blog/static/13346651820141125102125995/
+
+
+## 10 二分查找
+
+
+```python
+
+#coding:utf-8
+def binary_search(list,item):
+    low = 0
+    high = len(list)-1
+    while low<=high:
+        mid = (low+high)/2
+        guess = list[mid]
+        if guess>item:
+            high = mid-1
+        elif guess<item:
+            low = mid+1
         else:
             return mid
-    return low if l[low] == t else False
+    return None
+mylist = [1,3,5,7,9]
+print binary_search(mylist,3)
 
-if __name__ == '__main__':
-    l = [1, 4, 12, 45, 66, 99, 120, 444]
-    print binarySearch(l, 12)
-    print binarySearch(l, 1)
-    print binarySearch(l, 13)
-    print binarySearch(l, 444)
 ```
+
+参考: http://blog.csdn.net/u013205877/article/details/76411718
 
 ## 11 快排
 
 ```python
-def qsort(seq):
-    if seq==[]:
-        return []
+#coding:utf-8
+def quicksort(list):
+    if len(list)<2:
+        return list
     else:
-        pivot=seq[0]
-        lesser=qsort([x for x in seq[1:] if x<pivot])
-        greater=qsort([x for x in seq[1:] if x>=pivot])
-        return lesser+[pivot]+greater
+        midpivot = list[0]
+        lessbeforemidpivot = [i for i in list[1:] if i<=midpivot]
+        biggerafterpivot = [i for i in list[1:] if i > midpivot]
+        finallylist = quicksort(lessbeforemidpivot)+[midpivot]+quicksort(biggerafterpivot)
+        return finallylist
 
-if __name__=='__main__':
-    seq=[5,6,78,9,0,-1,2,3,-65,12]
-    print(qsort(seq))
+print quicksort([2,4,6,7,1,2,5])
 ```
+
 
 >  更多排序问题可见：[数据结构与算法-排序篇-Python描述](http://blog.csdn.net/mrlevo520/article/details/77829204)
 
+
 ## 12 找零问题
 
+
 ```python
-def  coinChange(values, money, coinsUsed):
-    #values    T[1:n]数组
-    #valuesCounts   钱币对应的种类数
-    #money  找出来的总钱数
-    #coinsUsed   对应于目前钱币总数i所使用的硬币数目
-    for cents in range(1, money+1):
-        minCoins = cents     #从第一个开始到money的所有情况初始
-        for value in values:
-            if value <= cents:
-                temp = coinsUsed[cents - value] + 1
-                if temp < minCoins:
+
+#coding:utf-8
+#values是硬币的面值values = [ 25, 21, 10, 5, 1]
+#valuesCounts   钱币对应的种类数
+#money  找出来的总钱数
+#coinsUsed   对应于目前钱币总数i所使用的硬币数目
+
+def coinChange(values,valuesCounts,money,coinsUsed):
+    #遍历出从1到money所有的钱数可能
+    for cents in range(1,money+1):
+        minCoins = cents
+        #把所有的硬币面值遍历出来和钱数做对比
+        for kind in range(0,valuesCounts):
+            if (values[kind] <= cents):
+                temp = coinsUsed[cents - values[kind]] +1
+                if (temp < minCoins):
                     minCoins = temp
         coinsUsed[cents] = minCoins
-        print('面值为：{0} 的最小硬币数目为：{1} '.format(cents, coinsUsed[cents]) )
+        print ('面值:{0}的最少硬币使用数为:{1}'.format(cents, coinsUsed[cents]))
 
-if __name__ == '__main__':
-    values = [ 25, 21, 10, 5, 1]
-    money = 63
-    coinsUsed = {i:0 for i in range(money+1)}
-    coinChange(values, money, coinsUsed)
 ```
+
+思路: http://blog.csdn.net/wdxin1322/article/details/9501163
+
+方法: http://www.cnblogs.com/ChenxofHit/archive/2011/03/18/1988431.html
 
 ## 13 广度遍历和深度遍历二叉树
 
 给定一个数组，构建二叉树，并且按层次打印这个二叉树
 
-```python
+
 ## 14 二叉树节点
+
+```python
+
 class Node(object):
     def __init__(self, data, left=None, right=None):
         self.data = data
@@ -1505,7 +1656,12 @@ class Node(object):
 
 tree = Node(1, Node(3, Node(7, Node(0)), Node(6)), Node(2, Node(5), Node(4)))
 
+```
+
 ## 15 层次遍历
+
+```python
+
 def lookup(root):
     stack = [root]
     while stack:
@@ -1515,7 +1671,13 @@ def lookup(root):
             stack.append(current.left)
         if current.right:
             stack.append(current.right)
+
+```
+
 ## 16 深度遍历
+
+```python
+
 def deep(root):
     if not root:
         return
@@ -1531,6 +1693,47 @@ if __name__ == '__main__':
 ## 17 前中后序遍历
 
 深度遍历改变顺序就OK了
+
+```python
+
+#coding:utf-8
+#二叉树的遍历
+#简单的二叉树节点类
+class Node(object):
+    def __init__(self,value,left,right):
+        self.value = value
+        self.left = left
+        self.right = right
+
+#中序遍历:遍历左子树,访问当前节点,遍历右子树
+
+def mid_travelsal(root):
+    if root.left is None:
+        mid_travelsal(root.left)
+    #访问当前节点
+    print(root.value)
+    if root.right is not None:
+        mid_travelsal(root.right)
+
+#前序遍历:访问当前节点,遍历左子树,遍历右子树
+
+def pre_travelsal(root):
+    print (root.value)
+    if root.left is not None:
+        pre_travelsal(root.left)
+    if root.right is not None:
+        pre_travelsal(root.right)
+
+#后续遍历:遍历左子树,遍历右子树,访问当前节点
+
+def post_trvelsal(root):
+    if root.left is not None:
+        post_trvelsal(root.left)
+    if root.right is not None:
+        post_trvelsal(root.right)
+    print (root.value)
+
+```
 
 ## 18 求最大树深
 
@@ -1601,6 +1804,11 @@ while root:
     print root.data
     root = root.next
 ```
+
+思路: http://blog.csdn.net/feliciafay/article/details/6841115
+
+方法: http://www.xuebuyuan.com/2066385.html?mobile=1
+
 
 ## 22 两个字符串是否是变位词
 
@@ -1685,7 +1893,9 @@ class Anagram:
 
 
 
+
 ## 23 动态规划问题
 
 >  可参考：[动态规划(DP)的整理-Python描述](http://blog.csdn.net/mrlevo520/article/details/75676160)
+
 

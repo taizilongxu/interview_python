@@ -8,9 +8,14 @@
       * [3 @staticmethod和@classmethod](#3-staticmethod和classmethod)
       * [4 类变量和实例变量](#4-类变量和实例变量)
       * [5 Python自省](#5-python自省)
-      * [6 字典推导式](#6-字典推导式)
+      * [6 字典](#6-字典)
+         * [1 字典推导式](#1-字典推导式)
+         * [2 dict中items与iteritems?](#2-dict中items与iteritems?)
       * [7 Python中单下划线和双下划线](#7-python中单下划线和双下划线)
-      * [8 字符串格式化:\x和.format](#8-字符串格式化和format)
+      * [8 字符串](#8-字符串)
+         * [1 格式化:\x和.format](#1-格式化和format)
+         * [2 翻转一个字符串](#2-翻转一个字符串)
+         * [3 将数量较多的字符串相连，如何效率较高](#3-将数量较多的字符串相连，如何效率较高)
       * [9 迭代器和生成器](#9-迭代器和生成器)
       * [10 *args and <code>**kwargs</code>](#10-args-and-kwargs)
       * [11 面向切面编程AOP和装饰器](#11-面向切面编程aop和装饰器)
@@ -40,6 +45,8 @@
       * [28 Python2和3的区别](#28-python2和3的区别)
       * [29 super init](#29-super-init)
       * [30 range and xrange](#30-range-and-xrange)
+      * [31 Python里如何生产随机数](#31-Python里如何生产随机数)
+      * [32 Python里如何反序的迭代一个序列](#32-Python里如何反序的迭代一个序列)
    * [操作系统](#操作系统)
       * [1 select,poll和epoll](#1-selectpoll和epoll)
       * [2 调度算法](#2-调度算法)
@@ -116,6 +123,8 @@
       * [21 单链表逆置](#21-单链表逆置)
       * [22 两个字符串是否是变位词](#22-两个字符串是否是变位词)
       * [23 动态规划问题](#23-动态规划问题)
+      * [24 生成指定长度的斐波那契数列](#24-生成指定长度的斐波那契数列)
+      * [25 生成质数](#25-生成质数)
 
 <!-- markdown-toc end -->
 
@@ -225,7 +234,7 @@ a=A()
 
 **类变量：**
 
-> ​	是可在类的所有实例之间共享的值（也就是说，它们不是单独分配给每个实例的）。例如下例中，num_of_instance 就是类变量，用于跟踪存在着多少个Test 的实例。
+> ​ 是可在类的所有实例之间共享的值（也就是说，它们不是单独分配给每个实例的）。例如下例中，num_of_instance 就是类变量，用于跟踪存在着多少个Test 的实例。
 
 **实例变量：**
 
@@ -297,11 +306,32 @@ print isinstance(a,list)  # True
 
 ## 6 字典推导式
 
-可能你见过列表推导时,却没有见过字典推导式,在2.7中才加入的:
+### 1 字典推导式
 
+可能你见过列表推导时,却没有见过字典推导式,在2.7中才加入的:
 ```python
 d = {key: value for (key, value) in iterable}
 ```
+### 1 dict中items与iteritems?
+```python
+>>> D = {'a':1,'b':2,'c':3,'d':4}    
+>>> D.items()                       #一次性取出所有    
+[('a', 1), ('c', 3), ('b', 2), ('d', 4)]    
+>>> D.iteritems()                   #迭代对象，每次取出一个。用for循环遍历出来；    
+<dictionary-itemiterator object at 0x00000000026243B8>    
+>>> for i in D.iteritems():    
+...   print i,    
+...    
+('a', 1) ('c', 3) ('b', 2) ('d', 4)    
+>>> for k,v in D.iteritems():    
+...   print k,    
+...    
+a c b d
+```
+总结:   
+1. 一般iteritems()迭代的办法比items()要快，特别是数据库比较大时。  
+2. 在Python3中一般取消前者函数 
+
 
 ## 7 Python中单下划线和双下划线
 
@@ -332,8 +362,9 @@ AttributeError: myClass instance has no attribute '__superprivate'
 
 或者: http://www.zhihu.com/question/19754941
 
-## 8 字符串格式化:%和.format
+## 8 字符串
 
+### 1 格式化:%和.format
 .format在许多方面看起来更便利.对于`%`最烦人的是它无法同时传递一个变量和元组.你可能会想下面的代码不会有什么问题:
 
 ```
@@ -354,6 +385,18 @@ AttributeError: myClass instance has no attribute '__superprivate'
 * 为了和Python2.5兼容(譬如logging库建议使用`%`([issue #4](https://github.com/taizilongxu/interview_python/issues/4)))
 
 http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
+
+### 2 翻转一个字符串
+```python   
+s = 'abcde'    
+ss = s[::-1]  
+```  
+### 3 将数量较多的字符串相连，如何效率较高
+```python 
+fruits = ['apple', 'banana']    
+result = ''.join(fruits)    
+```  
+python字符串效率问题之一就是在连接字符串的时候使用‘+’号，例如 s = ‘s1’ + ‘s2’ + ‘s3’ + ...+’sN’，总共将N个字符串连接起来， 但是使用+号的话，python需要申请N-1次内存空间， 然后进行字符串拷贝。原因是字符串对象PyStringObject在python当中是不可变 对象，所以每当需要合并两个字符串的时候，就要重新申请一个新的内存空间 （大小为两个字符串长度之和）来给这个合并之后的新字符串，然后进行拷贝。 所以用+号效率非常低。建议在连接字符串的时候使用字符串本身的方法 join（list），这个方法能提高效率，原因是它只是申请了一次内存空间， 因为它可以遍历list中的元素计算出总共需要申请的内存空间的大小，一次申请完。  
 
 ## 9 迭代器和生成器
 
@@ -517,7 +560,7 @@ ps: `__metaclass__`是创建类时起作用.所以我们可以分别使用`__met
 
 ## 16 单例模式
 
-> ​	单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。
+> ​ 单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。
 >
 > `__new__()`在`__init__()`之前被调用，用于生成实例对象。利用这个方法和类的属性的特点可以实现设计模式的单例模式。单例模式是指创建唯一对象，单例模式设计的类只能实例
 
@@ -754,15 +797,37 @@ http://stackoverflow.com/questions/576169/understanding-python-super-with-init-m
 [Python2.7中的super方法浅见](http://blog.csdn.net/mrlevo520/article/details/51712440)
 
 ## 30 range and xrange
-都在循环时使用，xrange内存性能更好。
-for i in range(0, 20):
-for i in xrange(0, 20):
-What is the difference between range and xrange functions in Python 2.X?
- range creates a list, so if you do range(1, 10000000) it creates a list in memory with 9999999 elements.
- xrange is a sequence object that evaluates lazily.
+range生成数组，xrange生成生成器，要生成很大的数字序列的时候，用xrange会比range性能优很多，因为不需要一上来就开辟一块很大的内存空间，这两个基本上都是在循环的时候用。
+在Python 3中，range()的实现方式与xrange()函数相同，所以就不存在专用的xrange( )
+详见：http://blog.csdn.net/u013205877/article/details/77416112
 
-http://stackoverflow.com/questions/94935/what-is-the-difference-between-range-and-xrange-functions-in-python-2-x
+## 31 Python里如何生产随机数
+```python
+import random
+print random.random()
+print random.randint(1,200)
+print random.choice(range(9))
+```
+输出：
+```
+0.712446492793
+192
+4
+```
 
+## 32 Python里如何反序的迭代一个序列
+```python
+#如果是一个list,最快的方法使用reverse
+tempList = [1,2,3,4]
+tempList.reverse()
+for x in tempList:
+    print x
+
+#如果不是list,需要手动重排,用range(len(templist)-1,-1,-1)把下标找出来，再利用下标打出反向的数值
+templist = (1,2,3,4)
+for i in range(len(templist)-1,-1,-1):
+    print templist[i]
+```
 # 操作系统
 
 ## 1 select,poll和epoll
@@ -914,7 +979,7 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 
 ### Redis数据库
 
-> ​	通常局限点来说，Redis也以消息队列的形式存在，作为内嵌的List存在，满足实时的高并发需求。在使用缓存的时候，redis比memcached具有更多的优势，并且支持更多的数据类型，把redis当作一个中间存储系统，用来处理高并发的数据库操作
+> ​ 通常局限点来说，Redis也以消息队列的形式存在，作为内嵌的List存在，满足实时的高并发需求。在使用缓存的时候，redis比memcached具有更多的优势，并且支持更多的数据类型，把redis当作一个中间存储系统，用来处理高并发的数据库操作
 
 - 速度快：使用标准C写，所有数据都在内存中完成，读写速度分别达到10万/20万 
 - 持久化：对数据的更新采用Copy-on-write技术，可以异步地保存到磁盘上，主要有两种策略，一是根据时间，更新次数的快照（save 300 10 ）二是基于语句追加方式(Append-only file，aof) 
@@ -939,7 +1004,7 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 ## 5 MVCC
 
 
-> ​	全称是Multi-Version Concurrent Control，即多版本并发控制，在MVCC协议下，每个读操作会看到一个一致性的snapshot，并且可以实现非阻塞的读。MVCC允许数据具有多个版本，这个版本可以是时间戳或者是全局递增的事务ID，在同一个时间点，不同的事务看到的数据是不同的。
+> ​ 全称是Multi-Version Concurrent Control，即多版本并发控制，在MVCC协议下，每个读操作会看到一个一致性的snapshot，并且可以实现非阻塞的读。MVCC允许数据具有多个版本，这个版本可以是时间戳或者是全局递增的事务ID，在同一个时间点，不同的事务看到的数据是不同的。
 
 ### [MySQL](http://lib.csdn.net/base/mysql)的innodb引擎是如何实现MVCC的
 
@@ -954,7 +1019,7 @@ innodb会为每一行添加两个字段，分别表示该行**创建的版本**�
 
 其中，写操作（insert、delete和update）执行时，需要将系统版本号递增。
 
-​	由于旧数据并不真正的删除，所以必须对这些数据进行清理，innodb会开启一个后台线程执行清理工作，具体的规则是将删除版本号小于当前系统版本的行删除，这个过程叫做purge。
+​   由于旧数据并不真正的删除，所以必须对这些数据进行清理，innodb会开启一个后台线程执行清理工作，具体的规则是将删除版本号小于当前系统版本的行删除，这个过程叫做purge。
 
 通过MVCC很好的实现了事务的隔离性，可以达到repeated read级别，要实现serializable还必须加锁。
 
@@ -1891,11 +1956,47 @@ class Anagram:
     print(Solution3('apple','pleap'))
 ```
 
-
-
-
 ## 23 动态规划问题
 
 >  可参考：[动态规划(DP)的整理-Python描述](http://blog.csdn.net/mrlevo520/article/details/75676160)
 
+## 24 生成指定长度的斐波那契数列
 
+```python
+#方法一
+listfib = [0,1]
+def fib():
+    a=0
+    b=1
+    for i in range(0,8):
+        a,b = b,a+b
+        listfib.append(b)
+    return listfib
+
+print fib()
+```
+```python
+#方法二
+def fib(x):
+    result = [0,1]
+    for i in range(x-2):
+        result.append(result[-1]+result[-2])
+    return result
+
+print fib(10)
+```
+输出：
+```
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+```
+
+## 25 生成质数
+
+```python
+#只能被1和自身整除，x%i==0为False，有余数为True
+nums = range(2,20)
+for i in nums:
+    nums = filter(lambda x:x==i or x%i,nums)
+print nums
+```

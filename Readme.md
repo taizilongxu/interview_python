@@ -1666,8 +1666,8 @@ tree = Node(1, Node(3, Node(7, Node(0)), Node(6)), Node(2, Node(5), Node(4)))
 def lookup(root):
     row = [root]
     while row:
-        row = [kid for item in row for kid in (item.left, item.right) if kid]
-        print(row)
+        print(row)
+        row = [kid for item in row for kid in (item.left, item.right) if kid]
 
 ```
 

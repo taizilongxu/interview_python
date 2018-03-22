@@ -1664,14 +1664,10 @@ tree = Node(1, Node(3, Node(7, Node(0)), Node(6)), Node(2, Node(5), Node(4)))
 ```python
 
 def lookup(root):
-    stack = [root]
-    while stack:
-        current = stack.pop(0)
-        print current.data
-        if current.left:
-            stack.append(current.left)
-        if current.right:
-            stack.append(current.right)
+    row = [root]
+    while row:
+        print(row)
+        row = [kid for item in row for kid in (item.left, item.right) if kid]
 
 ```
 

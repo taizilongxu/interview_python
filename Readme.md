@@ -557,9 +557,9 @@ class MyClass2(Borg):
 ### 3 装饰器版本
 
 ```python
-def singleton(cls, *args, **kw):
+def singleton(cls):
     instances = {}
-    def getinstance():
+    def getinstance(*args, **kw):
         if cls not in instances:
             instances[cls] = cls(*args, **kw)
         return instances[cls]

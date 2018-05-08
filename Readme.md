@@ -1,119 +1,127 @@
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
 **Table of Contents**
 
-- [Python语言特性](#python语言特性)
-    - [1 Python的函数参数传递](#1-python的函数参数传递)
-    - [2 Python中的元类(metaclass)](#2-python中的元类metaclass)
-    - [3 @staticmethod和@classmethod](#3-staticmethod和classmethod)
-    - [4 类变量和实例变量](#4-类变量和实例变量)
-    - [5 Python自省](#5-python自省)
-    - [6 字典推导式](#6-字典推导式)
-    - [7 Python中单下划线和双下划线](#7-python中单下划线和双下划线)
-    - [8 字符串格式化:%和.format](#8-字符串格式化和format)
-    - [9 迭代器和生成器](#9-迭代器和生成器)
-    - [10 `*args` and `**kwargs`](#10-args-and-kwargs)
-    - [11 面向切面编程AOP和装饰器](#11-面向切面编程aop和装饰器)
-    - [12 鸭子类型](#12-鸭子类型)
-    - [13 Python中重载](#13-python中重载)
-    - [14 新式类和旧式类](#14-新式类和旧式类)
-    - [15 `__new__`和`__init__`的区别](#15-__new__和__init__的区别)
-    - [16 单例模式](#16-单例模式)
-        - [1 使用`__new__`方法](#1-使用__new__方法)
-        - [2 共享属性](#2-共享属性)
-        - [3 装饰器版本](#3-装饰器版本)
-        - [4 import方法](#4-import方法)
-    - [17 Python中的作用域](#17-python中的作用域)
-    - [18 GIL线程全局锁](#18-gil线程全局锁)
-    - [19 协程](#19-协程)
-    - [20 闭包](#20-闭包)
-    - [21 lambda函数](#21-lambda函数)
-    - [22 Python函数式编程](#22-python函数式编程)
-    - [23 Python里的拷贝](#23-python里的拷贝)
-    - [24 Python垃圾回收机制](#24-python垃圾回收机制)
-        - [1 引用计数](#1-引用计数)
-        - [2 标记-清除机制](#2-标记-清除机制)
-        - [3 分代技术](#3-分代技术)
-    - [25 Python的List](#25-python的list)
-    - [26 Python的is](#26-python的is)
-    - [27 read,readline和readlines](#27-readreadline和readlines)
-    - [28 Python2和3的区别](#28-python2和3的区别)
-    - [29 super.`__init__`()](#29-super-init)
-    - [30 range-and-xrange](#30-range-and-xrange)
-- [操作系统](#操作系统)
-    - [1 select,poll和epoll](#1-selectpoll和epoll)
-    - [2 调度算法](#2-调度算法)
-    - [3 死锁](#3-死锁)
-    - [4 程序编译与链接](#4-程序编译与链接)
-        - [1 预处理](#1-预处理)
-        - [2 编译](#2-编译)
-        - [3 汇编](#3-汇编)
-        - [4 链接](#4-链接)
-    - [5 静态链接和动态链接](#5-静态链接和动态链接)
-    - [6 虚拟内存技术](#6-虚拟内存技术)
-    - [7 分页和分段](#7-分页和分段)
-        - [分页与分段的主要区别](#分页与分段的主要区别)
-    - [8 页面置换算法](#8-页面置换算法)
-    - [9 边沿触发和水平触发](#9-边沿触发和水平触发)
-- [数据库](#数据库)
-    - [1 事务](#1-事务)
-    - [2 数据库索引](#2-数据库索引)
-    - [3 Redis原理](#3-redis原理)
-    - [4 乐观锁和悲观锁](#4-乐观锁和悲观锁)
-    - [5 MVCC](#5-mvcc)
-    - [6 MyISAM和InnoDB](#6-myisam和innodb)
-- [网络](#网络)
-    - [1 三次握手](#1-三次握手)
-    - [2 四次挥手](#2-四次挥手)
-    - [3 ARP协议](#3-arp协议)
-    - [4 urllib和urllib2的区别](#4-urllib和urllib2的区别)
-    - [5 Post和Get](#5-post和get)
-    - [6 Cookie和Session](#6-cookie和session)
-    - [7 apache和nginx的区别](#7-apache和nginx的区别)
-    - [8 网站用户密码保存](#8-网站用户密码保存)
-    - [9 HTTP和HTTPS](#9-http和https)
-    - [10 XSRF和XSS](#10-xsrf和xss)
-    - [11 幂等 Idempotence](#11-幂等-idempotence)
-    - [12 RESTful架构(SOAP,RPC)](#12-restful架构soaprpc)
-    - [13 SOAP](#13-soap)
-    - [14 RPC](#14-rpc)
-    - [15 CGI和WSGI](#15-cgi和wsgi)
-    - [16 中间人攻击](#16-中间人攻击)
-    - [17 c10k问题](#17-c10k问题)
-    - [18 socket](#18-socket)
-    - [19 浏览器缓存](#19-浏览器缓存)
-    - [20 HTTP1.0和HTTP1.1](#20-http10和http11)
-    - [21 Ajax](#21-ajax)
-- [*NIX](#nix)
-    - [unix进程间通信方式(IPC)](#unixipc)
-- [数据结构](#数据结构)
-    - [1 红黑树](#1-红黑树)
-- [编程题](#编程题)
-    - [1 台阶问题/斐波纳挈](#1-台阶问题斐波纳挈)
-    - [2 变态台阶问题](#2-变态台阶问题)
-    - [3 矩形覆盖](#3-矩形覆盖)
-    - [4 杨氏矩阵查找](#4-杨氏矩阵查找)
-    - [5 去除列表中的重复元素](#5-去除列表中的重复元素)
-    - [6 链表成对调换](#6-链表成对调换)
-    - [7 创建字典的方法](#7-创建字典的方法)
-        - [1 直接创建](#1-直接创建)
-        - [2 工厂方法](#2-工厂方法)
-        - [3 fromkeys()方法](#3-fromkeys方法)
-    - [8 合并两个有序列表](#8-合并两个有序列表)
-    - [9 交叉链表求交点](#9-交叉链表求交点)
-    - [10 二分查找](#10-二分查找)
-    - [11 快排](#11-快排)
-    - [12 找零问题](#12-找零问题)
-    - [13 广度遍历和深度遍历二叉树](#13-广度遍历和深度遍历二叉树)
-    - [14 二叉树节点](#14-)
-    - [15 层次遍历](#15-)
-    - [16 深度遍历](#16-)
-    - [17 前中后序遍历](#17-前中后序遍历)
-    - [18 求最大树深](#18-求最大树深)
-    - [19 求两棵树是否相同](#19-求两棵树是否相同)
-    - [20 前序中序求后序](#20-前序中序求后序)
-    - [21 单链表逆置](#21-单链表逆置)
-    - [22 两个字符串是否是变位词](#22-两个字符串是否是变位词)
+
+   * [Python语言特性](#python语言特性)
+      * [1 Python的函数参数传递](#1-python的函数参数传递)
+      * [2 Python中的元类(metaclass)](#2-python中的元类metaclass)
+      * [3 @staticmethod和@classmethod](#3-staticmethod和classmethod)
+      * [4 类变量和实例变量](#4-类变量和实例变量)
+      * [5 Python自省](#5-python自省)
+      * [6 字典推导式](#6-字典推导式)
+      * [7 Python中单下划线和双下划线](#7-python中单下划线和双下划线)
+      * [8 字符串格式化:\x和.format](#8-字符串格式化和format)
+      * [9 迭代器和生成器](#9-迭代器和生成器)
+      * [10 *args and <code>**kwargs</code>](#10-args-and-kwargs)
+      * [11 面向切面编程AOP和装饰器](#11-面向切面编程aop和装饰器)
+      * [12 鸭子类型](#12-鸭子类型)
+      * [13 Python中重载](#13-python中重载)
+      * [14 新式类和旧式类](#14-新式类和旧式类)
+      * [15 __new__和<code>__init__</code>的区别](#15-__new__和__init__的区别)
+      * [16 单例模式](#16-单例模式)
+         * [1 使用__new__方法](#1-使用__new__方法)
+         * [2 共享属性](#2-共享属性)
+         * [3 装饰器版本](#3-装饰器版本)
+         * [4 import方法](#4-import方法)
+      * [17 Python中的作用域](#17-python中的作用域)
+      * [18 GIL线程全局锁](#18-gil线程全局锁)
+      * [19 协程](#19-协程)
+      * [20 闭包](#20-闭包)
+      * [21 lambda函数](#21-lambda函数)
+      * [22 Python函数式编程](#22-python函数式编程)
+      * [23 Python里的拷贝](#23-python里的拷贝)
+      * [24 Python垃圾回收机制](#24-python垃圾回收机制)
+         * [1 引用计数](#1-引用计数)
+         * [2 标记-清除机制](#2-标记-清除机制)
+         * [3 分代技术](#3-分代技术)
+      * [25 Python的List](#25-python的list)
+      * [26 Python的is](#26-python的is)
+      * [27 read,readline和readlines](#27-readreadline和readlines)
+      * [28 Python2和3的区别](#28-python2和3的区别)
+      * [29 super init](#29-super-init)
+      * [30 range and xrange](#30-range-and-xrange)
+   * [操作系统](#操作系统)
+      * [1 select,poll和epoll](#1-selectpoll和epoll)
+      * [2 调度算法](#2-调度算法)
+      * [3 死锁](#3-死锁)
+      * [4 程序编译与链接](#4-程序编译与链接)
+         * [1 预处理](#1-预处理)
+         * [2 编译](#2-编译)
+         * [3 汇编](#3-汇编)
+         * [4 链接](#4-链接)
+      * [5 静态链接和动态链接](#5-静态链接和动态链接)
+      * [6 虚拟内存技术](#6-虚拟内存技术)
+      * [7 分页和分段](#7-分页和分段)
+         * [分页与分段的主要区别](#分页与分段的主要区别)
+      * [8 页面置换算法](#8-页面置换算法)
+      * [9 边沿触发和水平触发](#9-边沿触发和水平触发)
+   * [数据库](#数据库)
+      * [1 事务](#1-事务)
+      * [2 数据库索引](#2-数据库索引)
+      * [3 Redis原理](#3-redis原理)
+         * [Redis是什么？](#redis是什么)
+         * [Redis数据库](#redis数据库)
+         * [Redis缺点](#redis缺点)
+      * [4 乐观锁和悲观锁](#4-乐观锁和悲观锁)
+      * [5 MVCC](#5-mvcc)
+         * [<a href="http://lib.csdn.net/base/mysql">MySQL</a>的innodb引擎是如何实现MVCC的](#mysql的innodb引擎是如何实现mvcc的)
+      * [6 MyISAM和InnoDB](#6-myisam和innodb)
+   * [网络](#网络)
+      * [1 三次握手](#1-三次握手)
+      * [2 四次挥手](#2-四次挥手)
+      * [3 ARP协议](#3-arp协议)
+      * [4 urllib和urllib2的区别](#4-urllib和urllib2的区别)
+      * [5 Post和Get](#5-post和get)
+      * [6 Cookie和Session](#6-cookie和session)
+      * [7 apache和nginx的区别](#7-apache和nginx的区别)
+      * [8 网站用户密码保存](#8-网站用户密码保存)
+      * [9 HTTP和HTTPS](#9-http和https)
+      * [10 XSRF和XSS](#10-xsrf和xss)
+      * [11 幂等 Idempotence](#11-幂等-idempotence)
+      * [12 RESTful架构(SOAP,RPC)](#12-restful架构soaprpc)
+      * [13 SOAP](#13-soap)
+      * [14 RPC](#14-rpc)
+      * [15 CGI和WSGI](#15-cgi和wsgi)
+      * [16 中间人攻击](#16-中间人攻击)
+      * [17 c10k问题](#17-c10k问题)
+      * [18 socket](#18-socket)
+      * [19 浏览器缓存](#19-浏览器缓存)
+      * [20 HTTP1.0和HTTP1.1](#20-http10和http11)
+      * [21 Ajax](#21-ajax)
+   * [*NIX](#nix)
+      * [unix进程间通信方式(IPC)](#unix进程间通信方式ipc)
+   * [数据结构](#数据结构)
+      * [1 红黑树](#1-红黑树)
+   * [编程题](#编程题)
+      * [1 台阶问题/斐波那契](#1-台阶问题斐波那契)
+      * [2 变态台阶问题](#2-变态台阶问题)
+      * [3 矩形覆盖](#3-矩形覆盖)
+      * [4 杨氏矩阵查找](#4-杨氏矩阵查找)
+      * [5 去除列表中的重复元素](#5-去除列表中的重复元素)
+      * [6 链表成对调换](#6-链表成对调换)
+      * [7 创建字典的方法](#7-创建字典的方法)
+         * [1 直接创建](#1-直接创建)
+         * [2 工厂方法](#2-工厂方法)
+         * [3 fromkeys()方法](#3-fromkeys方法)
+      * [8 合并两个有序列表](#8-合并两个有序列表)
+      * [9 交叉链表求交点](#9-交叉链表求交点)
+      * [10 二分查找](#10-二分查找)
+      * [11 快排](#11-快排)
+      * [12 找零问题](#12-找零问题)
+      * [13 广度遍历和深度遍历二叉树](#13-广度遍历和深度遍历二叉树)
+      * [17 前中后序遍历](#17-前中后序遍历)
+      * [18 求最大树深](#18-求最大树深)
+      * [19 求两棵树是否相同](#19-求两棵树是否相同)
+      * [20 前序中序求后序](#20-前序中序求后序)
+      * [21 单链表逆置](#21-单链表逆置)
+      * [22 两个字符串是否是变位词](#22-两个字符串是否是变位词)
+      * [23 动态规划问题](#23-动态规划问题)
+
 <!-- markdown-toc end -->
+
+
+
+
 
 # Python语言特性
 
@@ -168,7 +176,7 @@ fun(a)
 print a  # [1]
 ```
 
-这里记住的是类型是属于对象的，而不是变量。而对象有两种,“可更改”（mutable）与“不可更改”（immutable）对象。在python中，strings, tuples, 和numbers是不可更改的对象，而list,dict等则是可以修改的对象。(这就是这个问题的重点)
+这里记住的是类型是属于对象的，而不是变量。而对象有两种,“可更改”（mutable）与“不可更改”（immutable）对象。在python中，strings, tuples, 和numbers是不可更改的对象，而 list, dict, set 等则是可以修改的对象。(这就是这个问题的重点)
 
 当一个引用传递给函数的时候,函数自动复制一份引用,这个函数里的引用和外边的引用没有半毛关系了.所以第一个例子里函数把引用指向了一个不可变对象,当函数返回的时候,外面的引用没半毛感觉.而第二个例子就不一样了,函数内的引用指向的是可变对象,对它的操作就和定位了指针地址一样,在内存里进行修改.
 
@@ -206,14 +214,41 @@ a=A()
 
 对于静态方法其实和普通的方法一样,不需要对谁进行绑定,唯一的区别是调用的时候需要使用`a.static_foo(x)`或者`A.static_foo(x)`来调用.
 
-|\\|实例方法|类方法|静态方法|
-|:--|:--|:--|:--|
-|a = A()|a.foo(x)|a.class_foo(x)|a.static_foo(x)|
-|A|不可用|A.class_foo(x)|A.static_foo(x)|
+| \\      | 实例方法     | 类方法            | 静态方法            |
+| :------ | :------- | :------------- | :-------------- |
+| a = A() | a.foo(x) | a.class_foo(x) | a.static_foo(x) |
+| A       | 不可用      | A.class_foo(x) | A.static_foo(x) |
 
-更多关于这个问题:http://stackoverflow.com/questions/136097/what-is-the-difference-between-staticmethod-and-classmethod-in-python
-
+更多关于这个问题:
+1. http://stackoverflow.com/questions/136097/what-is-the-difference-between-staticmethod-and-classmethod-in-python
+2. https://realpython.com/blog/python/instance-class-and-static-methods-demystified/
 ## 4 类变量和实例变量
+
+**类变量：**
+
+> ​	是可在类的所有实例之间共享的值（也就是说，它们不是单独分配给每个实例的）。例如下例中，num_of_instance 就是类变量，用于跟踪存在着多少个Test 的实例。
+
+**实例变量：**
+
+> 实例化之后，每个实例单独拥有的变量。
+
+```python
+class Test(object):  
+    num_of_instance = 0  
+    def __init__(self, name):  
+        self.name = name  
+        Test.num_of_instance += 1  
+  
+if __name__ == '__main__':  
+    print Test.num_of_instance   # 0
+    t1 = Test('jack')  
+    print Test.num_of_instance   # 1
+    t2 = Test('lucy')  
+    print t1.name , t1.num_of_instance  # jack 2
+    print t2.name , t2.num_of_instance  # lucy 2
+```
+
+> 补充的例子
 
 ```python
 class Person:
@@ -226,8 +261,6 @@ print p1.name  # bbb
 print p2.name  # aaa
 print Person.name  # aaa
 ```
-
-类变量就是供类使用的变量,实例变量就是供实例使用的.
 
 这里`p1.name="bbb"`是实例调用了类变量,这其实和上面第一个问题一样,就是函数传参的问题,`p1.name`一开始是指向的类变量`name="aaa"`,但是在实例的作用域里把类变量的引用改变了,就变成了一个实例变量,self.name不再引用Person的类变量name了.
 
@@ -252,6 +285,16 @@ print Person.name  # [1]
 这个也是python彪悍的特性.
 
 自省就是面向对象的语言所写的程序在运行时,所能知道对象的类型.简单一句就是运行时能够获得对象的类型.比如type(),dir(),getattr(),hasattr(),isinstance().
+
+```python
+a = [1,2,3]
+b = {'a':1,'b':2,'c':3}
+c = True
+print type(a),type(b),type(c) # <type 'list'> <type 'dict'> <type 'bool'>
+print isinstance(a,list)  # True
+```
+
+
 
 ## 6 字典推导式
 
@@ -280,11 +323,11 @@ AttributeError: myClass instance has no attribute '__superprivate'
 {'_MyClass__superprivate': 'Hello', '_semiprivate': ', world!'}
 ```
 
-`__foo__`:一种约定,Python内部的名字,用来区别其他用户自定义的命名,以防冲突.
+`__foo__`:一种约定,Python内部的名字,用来区别其他用户自定义的命名,以防冲突，就是例如`__init__()`,`__del__()`,`__call__()`这些特殊方法
 
-`_foo`:一种约定,用来指定变量私有.程序员用来指定私有变量的一种方式.
+`_foo`:一种约定,用来指定变量私有.程序员用来指定私有变量的一种方式.不能用from module import * 导入，其他方面和公有一样访问；
 
-`__foo`:这个有真正的意义:解析器用`_classname__foo`来代替这个名字,以区别和其他类相同的命名.
+`__foo`:这个有真正的意义:解析器用`_classname__foo`来代替这个名字,以区别和其他类相同的命名,它无法直接像公有成员一样随便访问,通过对象名._类名__xxx这样的方式可以访问.
 
 详情见:http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python
 
@@ -318,6 +361,20 @@ http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 这个是stackoverflow里python排名第一的问题,值得一看: http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
 
 这是中文版: http://taizilongxu.gitbooks.io/stackoverflow-about-python/content/1/README.html
+
+这里有个关于生成器的创建问题面试官有考：
+问：  将列表生成式中[]改成() 之后数据结构是否改变？ 
+答案：是，从列表变为生成器
+
+```python
+>>> L = [x*x for x in range(10)]
+>>> L
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> g = (x*x for x in range(10))
+>>> g
+<generator object <genexpr> at 0x0000028F8B774200>
+```
+通过列表生成式，可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含百万元素的列表，不仅是占用很大的内存空间，如：我们只需要访问前面的几个元素，后面大部分元素所占的空间都是浪费的。因此，没有必要创建完整的列表（节省大量内存空间）。在Python中，我们可以采用生成器：边循环，边计算的机制—>generator
 
 ## 10 `*args` and `**kwargs`
 
@@ -421,6 +478,31 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 
 新式类很早在2.2就出现了,所以旧式类完全是兼容的问题,Python3里的类全部都是新式类.这里有一个MRO问题可以了解下(新式类是广度优先,旧式类是深度优先),<Python核心编程>里讲的也很多.
 
+> 一个旧式类的深度优先的例子
+
+```python
+class A():
+    def foo1(self):
+        print "A"
+class B(A):
+    def foo2(self):
+        pass
+class C(A):
+    def foo1(self):
+        print "C"
+class D(B, C):
+    pass
+
+d = D()
+d.foo1()
+
+# A
+```
+
+**按照经典类的查找顺序`从左到右深度优先`的规则，在访问`d.foo1()`的时候,D这个类是没有的..那么往上查找,先找到B,里面没有,深度优先,访问A,找到了foo1(),所以这时候调用的是A的foo1()，从而导致C重写的foo1()被绕过**
+
+
+
 ## 15 `__new__`和`__init__`的区别
 
 这个`__new__`确实很少见到,先做了解吧.
@@ -428,7 +510,7 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 1. `__new__`是一个静态方法,而`__init__`是一个实例方法.
 2. `__new__`方法会返回一个创建的实例,而`__init__`什么都不返回.
 3. 只有在`__new__`返回一个cls的实例时后面的`__init__`才能被调用.
-3. 当创建一个新实例时调用`__new__`,初始化一个实例时用`__init__`.
+4. 当创建一个新实例时调用`__new__`,初始化一个实例时用`__init__`.
 
 [stackoverflow](http://stackoverflow.com/questions/674304/pythons-use-of-new-and-init)
 
@@ -436,7 +518,10 @@ ps: `__metaclass__`是创建类时起作用.所以我们可以分别使用`__met
 
 ## 16 单例模式
 
-这个绝对常考啊.绝对要记住1~2个方法,当时面试官是让手写的.
+> ​	单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。
+>
+> `__new__()`在`__init__()`之前被调用，用于生成实例对象。利用这个方法和类的属性的特点可以实现设计模式的单例模式。单例模式是指创建唯一对象，单例模式设计的类只能实例
+**这个绝对常考啊.绝对要记住1~2个方法,当时面试官是让手写的.**
 
 ### 1 使用`__new__`方法
 
@@ -471,8 +556,6 @@ class MyClass2(Borg):
 
 ### 3 装饰器版本
 
-
-
 ```python
 def singleton(cls, *args, **kw):
     instances = {}
@@ -505,6 +588,7 @@ from mysingleton import my_singleton
 my_singleton.foo()
 
 ```
+**[单例模式伯乐在线详细解释](http://python.jobbole.com/87294/)**
 
 ## 17 Python中的作用域
 
@@ -516,7 +600,7 @@ Python 中，一个变量的作用域总是由在代码中被赋值的地方所�
 
 ## 18 GIL线程全局锁
 
-线程全局锁(Global Interpreter Lock),即Python为了保证线程安全而采取的独立线程运行的限制,说白了就是一个核只能在同一时间运行一个线程.
+线程全局锁(Global Interpreter Lock),即Python为了保证线程安全而采取的独立线程运行的限制,说白了就是一个核只能在同一时间运行一个线程.**对于io密集型任务，python的多线程起到作用，但对于cpu密集型任务，python的多线程几乎占不到任何优势，还有可能因为争夺资源而变慢。**
 
 见[Python 最难的问题](http://www.oschina.net/translate/pythons-hardest-problem)
 
@@ -668,6 +752,8 @@ Note that the syntax changed in Python 3.0: you can just say super().`__init__`(
 
 http://stackoverflow.com/questions/576169/understanding-python-super-with-init-methods
 
+[Python2.7中的super方法浅见](http://blog.csdn.net/mrlevo520/article/details/51712440)
+
 ## 30 range and xrange
 都在循环时使用，xrange内存性能更好。
 for i in range(0, 20):
@@ -708,6 +794,8 @@ epoll改了三个缺点.
 4. 时间片轮转(RR, Round Robin)
 5. 多级反馈队列调度(multilevel feedback queue scheduling)
 
+常见的调度算法总结:http://www.jianshu.com/p/6edf8174c1eb
+
 实时调度算法:
 
 1. 最早截至时间优先 EDF
@@ -735,6 +823,7 @@ epoll改了三个缺点.
     1. 剥夺资源
     2. 撤销进程
 
+死锁概念处理策略详细介绍:https://wizardforcel.gitbooks.io/wangdaokaoyan-os/content/10.html
 
 ## 4 程序编译与链接
 
@@ -807,6 +896,7 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 ## 1 事务
 
 数据库事务(Database Transaction) ，是指作为单个逻辑工作单元执行的一系列操作，要么完全地执行，要么完全地不执行。
+彻底理解数据库事务: http://www.hollischuang.com/archives/898
 
 ## 2 数据库索引
 
@@ -816,8 +906,27 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 
 聚集索引,非聚集索引,B-Tree,B+Tree,最左前缀原理
 
-
 ## 3 Redis原理
+
+### Redis是什么？
+
+1. 是一个完全开源免费的key-value内存数据库 
+2. 通常被认为是一个数据结构服务器，主要是因为其有着丰富的数据结构 strings、map、 list、sets、 sorted sets
+
+### Redis数据库
+
+> ​	通常局限点来说，Redis也以消息队列的形式存在，作为内嵌的List存在，满足实时的高并发需求。在使用缓存的时候，redis比memcached具有更多的优势，并且支持更多的数据类型，把redis当作一个中间存储系统，用来处理高并发的数据库操作
+
+- 速度快：使用标准C写，所有数据都在内存中完成，读写速度分别达到10万/20万 
+- 持久化：对数据的更新采用Copy-on-write技术，可以异步地保存到磁盘上，主要有两种策略，一是根据时间，更新次数的快照（save 300 10 ）二是基于语句追加方式(Append-only file，aof) 
+- 自动操作：对不同数据类型的操作都是自动的，很安全 
+- 快速的主--从复制，官方提供了一个数据，Slave在21秒即完成了对Amazon网站10G key set的复制。 
+- Sharding技术： 很容易将数据分布到多个Redis实例中，数据库的扩展是个永恒的话题，在关系型数据库中，主要是以添加硬件、以分区为主要技术形式的纵向扩展解决了很多的应用场景，但随着web2.0、移动互联网、云计算等应用的兴起，这种扩展模式已经不太适合了，所以近年来，像采用主从配置、数据库复制形式的，Sharding这种技术把负载分布到多个特理节点上去的横向扩展方式用处越来越多。
+
+### Redis缺点
+
+- 是数据库容量受到物理内存的限制,不能用作海量数据的高性能读写,因此Redis适合的场景主要局限在较小数据量的高性能操作和运算上。
+- Redis较难支持在线扩容，在集群容量达到上限时在线扩容会变得很复杂。为避免这一问题，运维人员在系统上线时必须确保有足够的空间，这对资源造成了很大的浪费。
 
 
 ## 4 乐观锁和悲观锁
@@ -826,7 +935,32 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 
 乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性。
 
+乐观锁与悲观锁的具体区别: http://www.cnblogs.com/Bob-FD/p/3352216.html
+
 ## 5 MVCC
+
+
+> ​	全称是Multi-Version Concurrent Control，即多版本并发控制，在MVCC协议下，每个读操作会看到一个一致性的snapshot，并且可以实现非阻塞的读。MVCC允许数据具有多个版本，这个版本可以是时间戳或者是全局递增的事务ID，在同一个时间点，不同的事务看到的数据是不同的。
+
+### [MySQL](http://lib.csdn.net/base/mysql)的innodb引擎是如何实现MVCC的
+
+innodb会为每一行添加两个字段，分别表示该行**创建的版本**和**删除的版本**，填入的是事务的版本号，这个版本号随着事务的创建不断递增。在repeated read的隔离级别（[事务的隔离级别请看这篇文章](http://blog.csdn.net/chosen0ne/article/details/10036775)）下，具体各种数据库操作的实现：
+
+- select：满足以下两个条件innodb会返回该行数据：
+  - 该行的创建版本号小于等于当前版本号，用于保证在select操作之前所有的操作已经执行落地。
+  - 该行的删除版本号大于当前版本或者为空。删除版本号大于当前版本意味着有一个并发事务将该行删除了。
+- insert：将新插入的行的创建版本号设置为当前系统的版本号。
+- delete：将要删除的行的删除版本号设置为当前系统的版本号。
+- update：不执行原地update，而是转换成insert + delete。将旧行的删除版本号设置为当前版本号，并将新行insert同时设置创建版本号为当前版本号。
+
+其中，写操作（insert、delete和update）执行时，需要将系统版本号递增。
+
+​	由于旧数据并不真正的删除，所以必须对这些数据进行清理，innodb会开启一个后台线程执行清理工作，具体的规则是将删除版本号小于当前系统版本的行删除，这个过程叫做purge。
+
+通过MVCC很好的实现了事务的隔离性，可以达到repeated read级别，要实现serializable还必须加锁。
+
+>  参考：[MVCC浅析](http://blog.csdn.net/chosen0ne/article/details/18093187)
+
 
 
 ## 6 MyISAM和InnoDB
@@ -835,15 +969,27 @@ MyISAM 适合于一些需要大量查询的应用，但其对于有大量写操�
 
 InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应用，它会比 MyISAM 还慢。他是它支持“行锁” ，于是在写操作比较多的时候，会更优秀。并且，他还支持更多的高级应用，比如：事务。
 
+mysql 数据库引擎: http://www.cnblogs.com/0201zcr/p/5296843.html
+MySQL存储引擎－－MyISAM与InnoDB区别: https://segmentfault.com/a/1190000008227211
+
 # 网络
 
 ## 1 三次握手
 
-1. 客户端通过向服务器端发送一个SYN来创建一个主动打开，作为三路握手的一部分。客户端把这段连接的序号设定为随机数 A。
+1. 客户端通过向服务器端发送一个SYN来创建一个主动打开，作为三次握手的一部分。客户端把这段连接的序号设定为随机数 A。
 2. 服务器端应当为一个合法的SYN回送一个SYN/ACK。ACK 的确认码应为 A+1，SYN/ACK 包本身又有一个随机序号 B。
 3. 最后，客户端再发送一个ACK。当服务端受到这个ACK的时候，就完成了三路握手，并进入了连接创建状态。此时包序号被设定为收到的确认号 A+1，而响应则为 B+1。
 
 ## 2 四次挥手
+
+_注意: 中断连接端可以是客户端，也可以是服务器端. 下面仅以客户端断开连接举例, 反之亦然._
+
+1. 客户端发送一个数据分段, 其中的 FIN 标记设置为1. 客户端进入 FIN-WAIT 状态. 该状态下客户端只接收数据, 不再发送数据.
+2. 服务器接收到带有 FIN = 1 的数据分段, 发送带有 ACK = 1 的剩余数据分段, 确认收到客户端发来的 FIN 信息.
+3. 服务器等到所有数据传输结束, 向客户端发送一个带有 FIN = 1 的数据分段, 并进入 CLOSE-WAIT 状态, 等待客户端发来带有 ACK = 1 的确认报文.
+4. 客户端收到服务器发来带有 FIN = 1 的报文, 返回 ACK = 1 的报文确认, 为了防止服务器端未收到需要重发, 进入 TIME-WAIT 状态. 服务器接收到报文后关闭连接. 客户端等待 2MSL 后未收到回复, 则认为服务器成功关闭, 客户端关闭连接.
+
+图解: http://blog.csdn.net/whuslei/article/details/6667471
 
 ## 3 ARP协议
 
@@ -868,11 +1014,11 @@ post: [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org
 
 ## 6 Cookie和Session
 
-||Cookie|Session|
-|:--|:--|:--|
-|储存位置|客户端|服务器端|
-|目的|跟踪会话，也可以保存用户偏好设置或者保存用户名密码等|跟踪会话|
-|安全性|不安全|安全|
+|      | Cookie                     | Session |
+| :--- | :------------------------- | :------ |
+| 储存位置 | 客户端                        | 服务器端    |
+| 目的   | 跟踪会话，也可以保存用户偏好设置或者保存用户名密码等 | 跟踪会话    |
+| 安全性  | 不安全                        | 安全      |
 
 session技术是要使用到cookie的，之所以出现session技术，主要是为了安全。
 
@@ -901,13 +1047,13 @@ apache 相对nginx 的优点：
 ## 9 HTTP和HTTPS
 
 
-|状态码|定义|
-|:--|:--|
-|1xx 报告|接收到请求，继续进程|
-|2xx 成功|步骤成功接收，被理解，并被接受|
-|3xx 重定向|为了完成请求,必须采取进一步措施|
-|4xx 客户端出错|请求包括错的顺序或不能完成|
-|5xx 服务器出错|服务器无法完成显然有效的请求|
+| 状态码       | 定义               |
+| :-------- | :--------------- |
+| 1xx 报告    | 接收到请求，继续进程       |
+| 2xx 成功    | 步骤成功接收，被理解，并被接受  |
+| 3xx 重定向   | 为了完成请求,必须采取进一步措施 |
+| 4xx 客户端出错 | 请求包括错的顺序或不能完成    |
+| 5xx 服务器出错 | 服务器无法完成显然有效的请求   |
 
 403: Forbidden
 404: Not Found
@@ -969,7 +1115,7 @@ WSGI, Web Server Gateway Interface，是Python应用程序或框架和Web服务�
 ## 17 c10k问题
 
 所谓c10k问题，指的是服务器同时支持成千上万个客户端的问题，也就是concurrent 10 000 connection（这也是c10k这个名字的由来）。
-推荐: http://www.kegel.com/c10k.html
+推荐: https://my.oschina.net/xianggao/blog/664275
 
 ## 18 socket
 
@@ -990,7 +1136,55 @@ Socket=Ip address+ TCP/UDP + port
 1. 请求头Host字段,一个服务器多个网站
 2. 长链接
 3. 文件断点续传
-3. 身份认证,状态管理,Cache缓存
+4. 身份认证,状态管理,Cache缓存
+
+HTTP请求8种方法介绍 
+HTTP/1.1协议中共定义了8种HTTP请求方法，HTTP请求方法也被叫做“请求动作”，不同的方法规定了不同的操作指定的资源方式。服务端也会根据不同的请求方法做不同的响应。
+
+GET
+
+GET请求会显示请求指定的资源。一般来说GET方法应该只用于数据的读取，而不应当用于会产生副作用的非幂等的操作中。
+
+GET会方法请求指定的页面信息，并返回响应主体，GET被认为是不安全的方法，因为GET方法会被网络蜘蛛等任意的访问。
+
+HEAD
+
+HEAD方法与GET方法一样，都是向服务器发出指定资源的请求。但是，服务器在响应HEAD请求时不会回传资源的内容部分，即：响应主体。这样，我们可以不传输全部内容的情况下，就可以获取服务器的响应头信息。HEAD方法常被用于客户端查看服务器的性能。
+
+POST
+
+POST请求会 向指定资源提交数据，请求服务器进行处理，如：表单数据提交、文件上传等，请求数据会被包含在请求体中。POST方法是非幂等的方法，因为这个请求可能会创建新的资源或/和修改现有资源。
+
+PUT
+
+PUT请求会身向指定资源位置上传其最新内容，PUT方法是幂等的方法。通过该方法客户端可以将指定资源的最新数据传送给服务器取代指定的资源的内容。
+
+DELETE
+
+DELETE请求用于请求服务器删除所请求URI（统一资源标识符，Uniform Resource Identifier）所标识的资源。DELETE请求后指定资源会被删除，DELETE方法也是幂等的。
+
+CONNECT
+
+CONNECT方法是HTTP/1.1协议预留的，能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接与非加密的HTTP代理服务器的通信。
+
+OPTIONS
+
+OPTIONS请求与HEAD类似，一般也是用于客户端查看服务器的性能。 这个方法会请求服务器返回该资源所支持的所有HTTP请求方法，该方法会用’*’来代替资源名称，向服务器发送OPTIONS请求，可以测试服务器功能是否正常。JavaScript的XMLHttpRequest对象进行CORS跨域资源共享时，就是使用OPTIONS方法发送嗅探请求，以判断是否有对指定资源的访问权限。 允许
+
+TRACE
+
+TRACE请求服务器回显其收到的请求信息，该方法主要用于HTTP请求的测试或诊断。
+
+HTTP/1.1之后增加的方法
+
+在HTTP/1.1标准制定之后，又陆续扩展了一些方法。其中使用中较多的是 PATCH 方法：
+
+PATCH
+
+PATCH方法出现的较晚，它在2010年的RFC 5789标准中被定义。PATCH请求与PUT请求类似，同样用于资源的更新。二者有以下两点不同：
+
+但PATCH一般用于资源的部分更新，而PUT一般用于资源的整体更新。 
+当资源不存在时，PATCH会创建一个新的资源，而PUT只会对已在资源进行更新。
 
 ## 21 Ajax
 AJAX,Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）, 是与在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术。
@@ -1021,9 +1215,13 @@ AVL是严格平衡树，因此在增加或者删除节点的时候，根据不�
 
 所以简单说，如果你的应用中，搜索的次数远远大于插入和删除，那么选择AVL，如果搜索，插入删除次数几乎差不多，应该选择RB。
 
+红黑树详解: https://xieguanglei.github.io/blog/post/red-black-tree.html
+
+教你透彻了解红黑树: https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md
+
 # 编程题
 
-## 1 台阶问题/斐波纳挈
+## 1 台阶问题/斐波那契
 
 一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
 
@@ -1137,7 +1335,11 @@ l2 = []
 [l2.append(i) for i in l1 if not i in l2]
 ```
 
-面试官提到的,先排序然后删除.
+sorted排序并且用列表推导式.
+
+l = ['b','c','d','b','c','a','a']
+[single.append(i) for i in sorted(l) if i not in single]
+print single
 
 ## 6 链表成对调换
 
@@ -1190,7 +1392,7 @@ dict2={'x':None, 'y':None}
 
 知乎远程面试要求编程
 
-尾递归
+>  尾递归
 
 ```python
 def _recursion_merge_sort2(l1, l2, tmp):
@@ -1211,7 +1413,22 @@ def recursion_merge_sort2(l1, l2):
     return _recursion_merge_sort2(l1, l2, [])
 ```
 
-循环算法
+>  循环算法
+
+思路：
+
+定义一个新的空列表
+
+比较两个列表的首个元素
+
+小的就插入到新列表里
+
+把已经插入新列表的元素从旧列表删除
+
+直到两个旧列表有一个为空
+
+再把旧列表加到新列表后面
+
 
 ```pyhton
 def loop_merge_sort(l1, l2):
@@ -1228,9 +1445,54 @@ def loop_merge_sort(l1, l2):
     return tmp
 ```
 
+
+> pop弹出
+
+```Python
+a = [1,2,3,7]
+b = [3,4,5]
+
+def merge_sortedlist(a,b):
+    c = []
+    while a and b:
+        if a[0] >= b[0]:
+            c.append(b.pop(0))
+        else:
+            c.append(a.pop(0))
+    while a:
+        c.append(a.pop(0))
+    while b:
+        c.append(b.pop(0))
+    return c
+print merge_sortedlist(a,b)
+    
+```
+
+
 ## 9 交叉链表求交点
 
-去哪儿的面试,没做出来.
+> 其实思想可以按照从尾开始比较两个链表，如果相交，则从尾开始必然一致，只要从尾开始比较，直至不一致的地方即为交叉点，如图所示
+
+![](http://hi.csdn.net/attachment/201106/28/0_1309244136MWLP.gif)
+
+```python
+# 使用a,b两个list来模拟链表，可以看出交叉点是 7这个节点
+a = [1,2,3,7,9,1,5]
+b = [4,5,7,9,1,5]
+
+for i in range(1,min(len(a),len(b))):
+    if i==1 and (a[-1] != b[-1]):
+        print "No"
+        break
+    else:
+        if a[-i] != b[-i]:
+            print "交叉节点：",a[-i+1]
+            break
+        else:
+            pass
+```
+
+> 另外一种比较正规的方法，构造链表类
 
 ```python
 class ListNode:
@@ -1261,78 +1523,132 @@ def node(l1, l2):
             l2 = l2.next
 ```
 
-## 10 二分查找
+修改了一下:
+
 
 ```python
-def binarySearch(l, t):
-    low, high = 0, len(l) - 1
-    while low < high:
-        print low, high
-        mid = (low + high) / 2
-        if l[mid] > t:
-            high = mid
-        elif l[mid] < t:
-            low = mid + 1
+#coding:utf-8
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+def node(l1, l2):
+    length1, length2 = 0, 0
+    # 求两个链表长度
+    while l1.next:
+        l1 = l1.next#尾节点
+        length1 += 1
+    while l2.next:
+        l2 = l2.next#尾节点
+        length2 += 1
+
+    #如果相交
+    if l1.next == l2.next:
+        # 长的链表先走
+        if length1 > length2:
+            for _ in range(length1 - length2):
+                l1 = l1.next
+            return l1#返回交点
+        else:
+            for _ in range(length2 - length1):
+                l2 = l2.next
+            return l2#返回交点
+    # 如果不相交
+    else:
+        return
+```
+
+
+思路: http://humaoli.blog.163.com/blog/static/13346651820141125102125995/
+
+
+## 10 二分查找
+
+
+```python
+
+#coding:utf-8
+def binary_search(list,item):
+    low = 0
+    high = len(list)-1
+    while low<=high:
+        mid = (low+high)/2
+        guess = list[mid]
+        if guess>item:
+            high = mid-1
+        elif guess<item:
+            low = mid+1
         else:
             return mid
-    return low if l[low] == t else False
+    return None
+mylist = [1,3,5,7,9]
+print binary_search(mylist,3)
 
-if __name__ == '__main__':
-    l = [1, 4, 12, 45, 66, 99, 120, 444]
-    print binarySearch(l, 12)
-    print binarySearch(l, 1)
-    print binarySearch(l, 13)
-    print binarySearch(l, 444)
 ```
+
+参考: http://blog.csdn.net/u013205877/article/details/76411718
 
 ## 11 快排
 
 ```python
-def qsort(seq):
-    if seq==[]:
-        return []
+#coding:utf-8
+def quicksort(list):
+    if len(list)<2:
+        return list
     else:
-        pivot=seq[0]
-        lesser=qsort([x for x in seq[1:] if x<pivot])
-        greater=qsort([x for x in seq[1:] if x>=pivot])
-        return lesser+[pivot]+greater
+        midpivot = list[0]
+        lessbeforemidpivot = [i for i in list[1:] if i<=midpivot]
+        biggerafterpivot = [i for i in list[1:] if i > midpivot]
+        finallylist = quicksort(lessbeforemidpivot)+[midpivot]+quicksort(biggerafterpivot)
+        return finallylist
 
-if __name__=='__main__':
-    seq=[5,6,78,9,0,-1,2,3,-65,12]
-    print(qsort(seq))
+print quicksort([2,4,6,7,1,2,5])
 ```
+
+
+>  更多排序问题可见：[数据结构与算法-排序篇-Python描述](http://blog.csdn.net/mrlevo520/article/details/77829204)
+
 
 ## 12 找零问题
 
+
 ```python
-def  coinChange(values, money, coinsUsed):
-    #values    T[1:n]数组
-    #valuesCounts   钱币对应的种类数
-    #money  找出来的总钱数
-    #coinsUsed   对应于目前钱币总数i所使用的硬币数目
-    for cents in range(1, money+1):
-        minCoins = cents     #从第一个开始到money的所有情况初始
-        for value in values:
-            if value <= cents:
-                temp = coinsUsed[cents - value] + 1
-                if temp < minCoins:
+
+#coding:utf-8
+#values是硬币的面值values = [ 25, 21, 10, 5, 1]
+#valuesCounts   钱币对应的种类数
+#money  找出来的总钱数
+#coinsUsed   对应于目前钱币总数i所使用的硬币数目
+
+def coinChange(values,valuesCounts,money,coinsUsed):
+    #遍历出从1到money所有的钱数可能
+    for cents in range(1,money+1):
+        minCoins = cents
+        #把所有的硬币面值遍历出来和钱数做对比
+        for kind in range(0,valuesCounts):
+            if (values[kind] <= cents):
+                temp = coinsUsed[cents - values[kind]] +1
+                if (temp < minCoins):
                     minCoins = temp
         coinsUsed[cents] = minCoins
-        print('面值为：{0} 的最小硬币数目为：{1} '.format(cents, coinsUsed[cents]) )
+        print ('面值:{0}的最少硬币使用数为:{1}'.format(cents, coinsUsed[cents]))
 
-if __name__ == '__main__':
-    values = [ 25, 21, 10, 5, 1]
-    money = 63
-    coinsUsed = {i:0 for i in range(money+1)}
-    coinChange(values, money, coinsUsed)
 ```
+
+思路: http://blog.csdn.net/wdxin1322/article/details/9501163
+
+方法: http://www.cnblogs.com/ChenxofHit/archive/2011/03/18/1988431.html
 
 ## 13 广度遍历和深度遍历二叉树
 
 给定一个数组，构建二叉树，并且按层次打印这个二叉树
 
-```python
+
 ## 14 二叉树节点
+
+```python
+
 class Node(object):
     def __init__(self, data, left=None, right=None):
         self.data = data
@@ -1341,17 +1657,24 @@ class Node(object):
 
 tree = Node(1, Node(3, Node(7, Node(0)), Node(6)), Node(2, Node(5), Node(4)))
 
+```
+
 ## 15 层次遍历
+
+```python
+
 def lookup(root):
-    stack = [root]
-    while stack:
-        current = stack.pop(0)
-        print current.data
-        if current.left:
-            stack.append(current.left)
-        if current.right:
-            stack.append(current.right)
+    row = [root]
+    while row:
+        print(row)
+        row = [kid for item in row for kid in (item.left, item.right) if kid]
+
+```
+
 ## 16 深度遍历
+
+```python
+
 def deep(root):
     if not root:
         return
@@ -1367,6 +1690,47 @@ if __name__ == '__main__':
 ## 17 前中后序遍历
 
 深度遍历改变顺序就OK了
+
+```python
+
+#coding:utf-8
+#二叉树的遍历
+#简单的二叉树节点类
+class Node(object):
+    def __init__(self,value,left,right):
+        self.value = value
+        self.left = left
+        self.right = right
+
+#中序遍历:遍历左子树,访问当前节点,遍历右子树
+
+def mid_travelsal(root):
+    if root.left is None:
+        mid_travelsal(root.left)
+    #访问当前节点
+    print(root.value)
+    if root.right is not None:
+        mid_travelsal(root.right)
+
+#前序遍历:访问当前节点,遍历左子树,遍历右子树
+
+def pre_travelsal(root):
+    print (root.value)
+    if root.left is not None:
+        pre_travelsal(root.left)
+    if root.right is not None:
+        pre_travelsal(root.right)
+
+#后续遍历:遍历左子树,遍历右子树,访问当前节点
+
+def post_trvelsal(root):
+    if root.left is not None:
+        post_trvelsal(root.left)
+    if root.right is not None:
+        post_trvelsal(root.right)
+    print (root.value)
+
+```
 
 ## 18 求最大树深
 
@@ -1437,6 +1801,11 @@ while root:
     print root.data
     root = root.next
 ```
+
+思路: http://blog.csdn.net/feliciafay/article/details/6841115
+
+方法: http://www.xuebuyuan.com/2066385.html?mobile=1
+
 
 ## 22 两个字符串是否是变位词
 
@@ -1517,7 +1886,13 @@ class Anagram:
         return stillOK
 
     print(Solution3('apple','pleap'))
-
 ```
+
+
+
+
+## 23 动态规划问题
+
+>  可参考：[动态规划(DP)的整理-Python描述](http://blog.csdn.net/mrlevo520/article/details/75676160)
 
 

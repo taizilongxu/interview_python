@@ -1592,18 +1592,28 @@ print binary_search(mylist,3)
 ## 11 快排
 
 ```python
-#coding:utf-8
-def quicksort(list):
-    if len(list)<2:
-        return list
-    else:
-        midpivot = list[0]
-        lessbeforemidpivot = [i for i in list[1:] if i<=midpivot]
-        biggerafterpivot = [i for i in list[1:] if i > midpivot]
-        finallylist = quicksort(lessbeforemidpivot)+[midpivot]+quicksort(biggerafterpivot)
-        return finallylist
+def quick_sort(array, low, high):
+    if low < high:
+        _index = partition(array, low, high)
+        quick_sort(array, low, _index)
+        quick_sort(array, _index+1, high)
 
-print quicksort([2,4,6,7,1,2,5])
+def partition(array, low, high):
+    key = array[low]
+    while low < high:
+        while low < high and array[high] >= key:
+            high -= 1
+        if low < high:
+            array[low] = array[high]
+
+        while low < high and array[low] < key:
+            low += 1
+        if low < high:
+            array[high] = array[low]
+
+    array[low] = key
+    return low
+
 ```
 
 

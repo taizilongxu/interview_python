@@ -1705,7 +1705,7 @@ class Node(object):
 #中序遍历:遍历左子树,访问当前节点,遍历右子树
 
 def mid_travelsal(root):
-    if root.left is None:
+    if root.left is not None:
         mid_travelsal(root.left)
     #访问当前节点
     print(root.value)

@@ -1569,21 +1569,21 @@ def node(l1, l2):
 ```python
 
 #coding:utf-8
-def binary_search(list,item):
+def binary_search(list, item):
     low = 0
-    high = len(list)-1
-    while low<=high:
-        mid = (low+high)/2
+    high = len(list) - 1
+    while low <= high:
+        mid = (high - low) / 2 + low    # 避免(high + low) / 2溢出
         guess = list[mid]
-        if guess>item:
-            high = mid-1
-        elif guess<item:
-            low = mid+1
+        if guess > item:
+            high = mid - 1
+        elif guess < item:
+            low = mid + 1
         else:
             return mid
     return None
 mylist = [1,3,5,7,9]
-print binary_search(mylist,3)
+print binary_search(mylist, 3)
 
 ```
 

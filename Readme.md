@@ -1252,7 +1252,7 @@ def fib(i):
 
 ```python
 def fib(n):
-    a, b = 0, 1
+    a, b = 1, 0
     for _ in xrange(n):
         a, b = b, a + b
     return b

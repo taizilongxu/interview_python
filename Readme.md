@@ -449,7 +449,7 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 
 又比如list.extend()方法中,我们并不关心它的参数是不是list,只要它是可迭代的,所以它的参数可以是list/tuple/dict/字符串/生成器等.
 
-鸭子类型在动态语言中经常使用，非常灵活，使得python不想java那样专门去弄一大堆的设计模式。
+鸭子类型在动态语言中经常使用，非常灵活，使得python不像java那样专门去弄一大堆的设计模式。
 
 ## 13 Python中重载
 

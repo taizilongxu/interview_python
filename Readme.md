@@ -1,127 +1,4 @@
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
-**Table of Contents**
-
-
-   * [Python语言特性](#python语言特性)
-      * [1 Python的函数参数传递](#1-python的函数参数传递)
-      * [2 Python中的元类(metaclass)](#2-python中的元类metaclass)
-      * [3 @staticmethod和@classmethod](#3-staticmethod和classmethod)
-      * [4 类变量和实例变量](#4-类变量和实例变量)
-      * [5 Python自省](#5-python自省)
-      * [6 字典推导式](#6-字典推导式)
-      * [7 Python中单下划线和双下划线](#7-python中单下划线和双下划线)
-      * [8 字符串格式化:\x和.format](#8-字符串格式化和format)
-      * [9 迭代器和生成器](#9-迭代器和生成器)
-      * [10 *args and <code>**kwargs</code>](#10-args-and-kwargs)
-      * [11 面向切面编程AOP和装饰器](#11-面向切面编程aop和装饰器)
-      * [12 鸭子类型](#12-鸭子类型)
-      * [13 Python中重载](#13-python中重载)
-      * [14 新式类和旧式类](#14-新式类和旧式类)
-      * [15 __new__和<code>__init__</code>的区别](#15-__new__和__init__的区别)
-      * [16 单例模式](#16-单例模式)
-         * [1 使用__new__方法](#1-使用__new__方法)
-         * [2 共享属性](#2-共享属性)
-         * [3 装饰器版本](#3-装饰器版本)
-         * [4 import方法](#4-import方法)
-      * [17 Python中的作用域](#17-python中的作用域)
-      * [18 GIL线程全局锁](#18-gil线程全局锁)
-      * [19 协程](#19-协程)
-      * [20 闭包](#20-闭包)
-      * [21 lambda函数](#21-lambda函数)
-      * [22 Python函数式编程](#22-python函数式编程)
-      * [23 Python里的拷贝](#23-python里的拷贝)
-      * [24 Python垃圾回收机制](#24-python垃圾回收机制)
-         * [1 引用计数](#1-引用计数)
-         * [2 标记-清除机制](#2-标记-清除机制)
-         * [3 分代技术](#3-分代技术)
-      * [25 Python的List](#25-python的list)
-      * [26 Python的is](#26-python的is)
-      * [27 read,readline和readlines](#27-readreadline和readlines)
-      * [28 Python2和3的区别](#28-python2和3的区别)
-      * [29 super init](#29-super-init)
-      * [30 range and xrange](#30-range-and-xrange)
-   * [操作系统](#操作系统)
-      * [1 select,poll和epoll](#1-selectpoll和epoll)
-      * [2 调度算法](#2-调度算法)
-      * [3 死锁](#3-死锁)
-      * [4 程序编译与链接](#4-程序编译与链接)
-         * [1 预处理](#1-预处理)
-         * [2 编译](#2-编译)
-         * [3 汇编](#3-汇编)
-         * [4 链接](#4-链接)
-      * [5 静态链接和动态链接](#5-静态链接和动态链接)
-      * [6 虚拟内存技术](#6-虚拟内存技术)
-      * [7 分页和分段](#7-分页和分段)
-         * [分页与分段的主要区别](#分页与分段的主要区别)
-      * [8 页面置换算法](#8-页面置换算法)
-      * [9 边沿触发和水平触发](#9-边沿触发和水平触发)
-   * [数据库](#数据库)
-      * [1 事务](#1-事务)
-      * [2 数据库索引](#2-数据库索引)
-      * [3 Redis原理](#3-redis原理)
-         * [Redis是什么？](#redis是什么)
-         * [Redis数据库](#redis数据库)
-         * [Redis缺点](#redis缺点)
-      * [4 乐观锁和悲观锁](#4-乐观锁和悲观锁)
-      * [5 MVCC](#5-mvcc)
-         * [<a href="http://lib.csdn.net/base/mysql">MySQL</a>的innodb引擎是如何实现MVCC的](#mysql的innodb引擎是如何实现mvcc的)
-      * [6 MyISAM和InnoDB](#6-myisam和innodb)
-   * [网络](#网络)
-      * [1 三次握手](#1-三次握手)
-      * [2 四次挥手](#2-四次挥手)
-      * [3 ARP协议](#3-arp协议)
-      * [4 urllib和urllib2的区别](#4-urllib和urllib2的区别)
-      * [5 Post和Get](#5-post和get)
-      * [6 Cookie和Session](#6-cookie和session)
-      * [7 apache和nginx的区别](#7-apache和nginx的区别)
-      * [8 网站用户密码保存](#8-网站用户密码保存)
-      * [9 HTTP和HTTPS](#9-http和https)
-      * [10 XSRF和XSS](#10-xsrf和xss)
-      * [11 幂等 Idempotence](#11-幂等-idempotence)
-      * [12 RESTful架构(SOAP,RPC)](#12-restful架构soaprpc)
-      * [13 SOAP](#13-soap)
-      * [14 RPC](#14-rpc)
-      * [15 CGI和WSGI](#15-cgi和wsgi)
-      * [16 中间人攻击](#16-中间人攻击)
-      * [17 c10k问题](#17-c10k问题)
-      * [18 socket](#18-socket)
-      * [19 浏览器缓存](#19-浏览器缓存)
-      * [20 HTTP1.0和HTTP1.1](#20-http10和http11)
-      * [21 Ajax](#21-ajax)
-   * [*NIX](#nix)
-      * [unix进程间通信方式(IPC)](#unix进程间通信方式ipc)
-   * [数据结构](#数据结构)
-      * [1 红黑树](#1-红黑树)
-   * [编程题](#编程题)
-      * [1 台阶问题/斐波那契](#1-台阶问题斐波那契)
-      * [2 变态台阶问题](#2-变态台阶问题)
-      * [3 矩形覆盖](#3-矩形覆盖)
-      * [4 杨氏矩阵查找](#4-杨氏矩阵查找)
-      * [5 去除列表中的重复元素](#5-去除列表中的重复元素)
-      * [6 链表成对调换](#6-链表成对调换)
-      * [7 创建字典的方法](#7-创建字典的方法)
-         * [1 直接创建](#1-直接创建)
-         * [2 工厂方法](#2-工厂方法)
-         * [3 fromkeys()方法](#3-fromkeys方法)
-      * [8 合并两个有序列表](#8-合并两个有序列表)
-      * [9 交叉链表求交点](#9-交叉链表求交点)
-      * [10 二分查找](#10-二分查找)
-      * [11 快排](#11-快排)
-      * [12 找零问题](#12-找零问题)
-      * [13 广度遍历和深度遍历二叉树](#13-广度遍历和深度遍历二叉树)
-      * [17 前中后序遍历](#17-前中后序遍历)
-      * [18 求最大树深](#18-求最大树深)
-      * [19 求两棵树是否相同](#19-求两棵树是否相同)
-      * [20 前序中序求后序](#20-前序中序求后序)
-      * [21 单链表逆置](#21-单链表逆置)
-      * [22 两个字符串是否是变位词](#22-两个字符串是否是变位词)
-      * [23 动态规划问题](#23-动态规划问题)
-
-<!-- markdown-toc end -->
-
-
-
-
+[toc]
 
 # Python语言特性
 
@@ -134,7 +11,7 @@ a = 1
 def fun(a):
     a = 2
 fun(a)
-print a  # 1
+print(a)  # 1
 ```
 
 ```python
@@ -142,7 +19,7 @@ a = []
 def fun(a):
     a.append(1)
 fun(a)
-print a  # [1]
+print(a)  # [1]
 ```
 
 所有的变量都可以理解是内存中一个对象的“引用”，或者，也可以看似c中void*的感觉。
@@ -152,12 +29,12 @@ print a  # [1]
 ```python
 a = 1
 def fun(a):
-    print "func_in",id(a)   # func_in 41322472
+    print("func_in",id(a))   # func_in 41322472
     a = 2
-    print "re-point",id(a), id(2)   # re-point 41322448 41322448
-print "func_out",id(a), id(1)  # func_out 41322472 41322472
+    print("re-point",id(a), id(2))   # re-point 41322448 41322448
+print("func_out",id(a), id(1))  # func_out 41322472 41322472
 fun(a)
-print a  # 1
+print(a)  # 1
 ```
 
 注：具体的值在不同电脑上运行时可能不同。
@@ -169,11 +46,11 @@ print a  # 1
 ```python
 a = []
 def fun(a):
-    print "func_in",id(a)  # func_in 53629256
+    print ("func_in",id(a))  # func_in 53629256
     a.append(1)
-print "func_out",id(a)     # func_out 53629256
+print("func_out",id(a))     # func_out 53629256
 fun(a)
-print a  # [1]
+print(a)  # [1]
 ```
 
 这里记住的是类型是属于对象的，而不是变量。而对象有两种,“可更改”（mutable）与“不可更改”（immutable）对象。在python中，strings, tuples, 和numbers是不可更改的对象，而 list, dict, set 等则是可以修改的对象。(这就是这个问题的重点)
@@ -192,19 +69,19 @@ Python其实有3个方法,即静态方法(staticmethod),类方法(classmethod)�
 
 ```python
 def foo(x):
-    print "executing foo(%s)"%(x)
+    print("executing foo(%s)"%(x))
 
 class A(object):
     def foo(self,x):
-        print "executing foo(%s,%s)"%(self,x)
+        print("executing foo(%s,%s)"%(self,x))
 
     @classmethod
     def class_foo(cls,x):
-        print "executing class_foo(%s,%s)"%(cls,x)
+        print("executing class_foo(%s,%s)"%(cls,x))
 
     @staticmethod
     def static_foo(x):
-        print "executing static_foo(%s)"%x
+        print("executing static_foo(%s)"%x)
 
 a=A()
 
@@ -240,12 +117,12 @@ class Test(object):
         Test.num_of_instance += 1  
   
 if __name__ == '__main__':  
-    print Test.num_of_instance   # 0
+    print(Test.num_of_instance)   # 0
     t1 = Test('jack')  
-    print Test.num_of_instance   # 1
+    print(Test.num_of_instance)   # 1
     t2 = Test('lucy')  
-    print t1.name , t1.num_of_instance  # jack 2
-    print t2.name , t2.num_of_instance  # lucy 2
+    print(t1.name , t1.num_of_instance)  # jack 2
+    print(t2.name , t2.num_of_instance)  # lucy 2
 ```
 
 > 补充的例子
@@ -257,9 +134,9 @@ class Person:
 p1=Person()
 p2=Person()
 p1.name="bbb"
-print p1.name  # bbb
-print p2.name  # aaa
-print Person.name  # aaa
+print(p1.name)  # bbb
+print(p2.name)  # aaa
+print(Person.name)  # aaa
 ```
 
 这里`p1.name="bbb"`是实例调用了类变量,这其实和上面第一个问题一样,就是函数传参的问题,`p1.name`一开始是指向的类变量`name="aaa"`,但是在实例的作用域里把类变量的引用改变了,就变成了一个实例变量,self.name不再引用Person的类变量name了.
@@ -273,12 +150,14 @@ class Person:
 p1=Person()
 p2=Person()
 p1.name.append(1)
-print p1.name  # [1]
-print p2.name  # [1]
-print Person.name  # [1]
+print(p1.name)  # [1]
+print(p2.name)  # [1]
+print(Person.name)  # [1]
 ```
 
-参考:http://stackoverflow.com/questions/6470428/catch-multiple-exceptions-in-one-line-except-block
+当类变量值为可变对象（列表、字典等）时，共享类变量可能会造成意外的结果。
+
+为了避免变量混淆，推荐使用 self 来定义实例变量，使用类名或 cls 来定义类变量。对于可变对象的类变量，可以在类定义时使用深复制来避免共享。
 
 ## 5 Python自省
 
@@ -290,18 +169,16 @@ print Person.name  # [1]
 a = [1,2,3]
 b = {'a':1,'b':2,'c':3}
 c = True
-print type(a),type(b),type(c) # <type 'list'> <type 'dict'> <type 'bool'>
-print isinstance(a,list)  # True
+print(type(a),type(b),type(c)) # <type 'list'> <type 'dict'> <type 'bool'>
+print(isinstance(a,list))  # True
 ```
-
-
 
 ## 6 字典推导式
 
 可能你见过列表推导时,却没有见过字典推导式,在2.7中才加入的:
 
 ```python
-d = {key: value for (key, value) in iterable}
+d = {key: value for (key, value) in iterable.items()}
 ```
 
 ## 7 Python中单下划线和双下划线
@@ -313,13 +190,13 @@ d = {key: value for (key, value) in iterable}
 ...             self._semiprivate = ", world!"
 ...
 >>> mc = MyClass()
->>> print mc.__superprivate
+>>> print(mc.__superprivate)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 AttributeError: myClass instance has no attribute '__superprivate'
->>> print mc._semiprivate
+>>> print(mc._semiprivate)
 , world!
->>> print mc.__dict__
+>>> print(mc.__dict__)
 {'_MyClass__superprivate': 'Hello', '_semiprivate': ', world!'}
 ```
 
@@ -356,6 +233,16 @@ AttributeError: myClass instance has no attribute '__superprivate'
 
 http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 
+
+
+Python f-string 是**执行字符串格式化的最新Python 语法**。 自Python 3.6 起可用。 Python f 字符串提供了一种更快，更易读，更简明且不易出错的在Python 中格式化字符串的方式。f 字符串的前缀为f，并使用{}括号评估值。 在冒号后指定用于类型，填充或对齐的格式说明符。
+
+```python
+name = "小明"
+age = 20
+print(f"{name}的年龄是{age}岁！")    #小明的年龄是20岁！
+```
+
 ## 9 迭代器和生成器
 
 这个是stackoverflow里python排名第一的问题,值得一看: http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
@@ -374,7 +261,9 @@ http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 >>> g
 <generator object <genexpr> at 0x0000028F8B774200>
 ```
-通过列表生成式，可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含百万元素的列表，不仅是占用很大的内存空间，如：我们只需要访问前面的几个元素，后面大部分元素所占的空间都是浪费的。因此，没有必要创建完整的列表（节省大量内存空间）。在Python中，我们可以采用生成器：边循环，边计算的机制—>generator
+通过列表生成式，可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含百万元素的列表，不仅是占用很大的内存空间，如：我们只需要访问前面的几个元素，后面大部分元素所占的空间都是浪费的。因此，没有必要创建完整的列表（节省大量内存空间）。
+
+在Python中，我们可以采用生成器：边循环，边计算的机制—>generator
 
 ## 10 `*args` and `**kwargs`
 
@@ -385,7 +274,7 @@ http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 ```python
 >>> def print_everything(*args):
         for count, thing in enumerate(args):
-...         print '{0}. {1}'.format(count, thing)
+...         print(f'{count}. {thing}'
 ...
 >>> print_everything('apple', 'banana', 'cabbage')
 0. apple
@@ -398,7 +287,7 @@ http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 ```python
 >>> def table_things(**kwargs):
 ...     for name, value in kwargs.items():
-...         print '{0} = {1}'.format(name, value)
+...         print('{name} = {value}')
 ...
 >>> table_things(apple = 'fruit', cabbage = 'vegetable')
 cabbage = vegetable
@@ -417,7 +306,7 @@ def table_things(titlestring, **kwargs)
 
 ```python
 >>> def print_three_things(a, b, c):
-...     print 'a = {0}, b = {1}, c = {2}'.format(a,b,c)
+...     print('a = {a}, b = {b}, c = {c}')
 ...
 >>> mylist = ['aardvark', 'baboon', 'cat']
 >>> print_three_things(*mylist)
@@ -483,13 +372,13 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 ```python
 class A():
     def foo1(self):
-        print "A"
+        print("A")
 class B(A):
     def foo2(self):
         pass
 class C(A):
     def foo1(self):
-        print "C"
+        print("C")
 class D(B, C):
     pass
 
@@ -631,9 +520,41 @@ Python里最常见的yield就是协程的思想!可以查看第九个问题.
 
 闭包就像个空心球一样,你知道外面和里面,但你不知道中间是什么样.
 
+```python
+def count_time_wrapper(func):
+    def improved_func():
+        start_time = time.time()
+        func()
+        end_time = time.time()
+        print(f"it takes {end_time - start_time}s to find all the olds")
+
+    return improved_func
+    # 闭包本质上是一个函数
+    # 闭包函数的传入参数和返回值都是函数
+    # 闭包函数的返回值函数是对传入函数进行增强的函数
+```
+
 ## 21 lambda函数
 
 其实就是一个匿名函数,为什么叫lambda?因为和后面的函数式编程有关.
+
+```python
+f = lambda x: x * x
+print(f(4))  #16
+
+g = lambda x, y: x + y
+print(g(1, 2))  #3
+
+
+def que(a, b, c):
+    return lambda x: a * x * x + b * x + c
+
+# 第一种写法
+f = que(-1, 1, 2)  #-18
+print(f(5))
+# 第二种写法
+print(que(-1, 1, 2)(5))   #-18
+```
 
 推荐: [知乎](http://www.zhihu.com/question/20125256)
 
@@ -651,7 +572,7 @@ filter 函数的功能相当于过滤器。调用一个布尔函数`bool_func`�
 ```python
 >>>a = [1,2,3,4,5,6,7]
 >>>b = filter(lambda x: x > 5, a)
->>>print b
+>>>print(b)
 >>>[6,7]
 ```
 
@@ -685,10 +606,10 @@ d = copy.deepcopy(a)  #对象拷贝，深拷贝
 a.append(5)  #修改对象a
 a[4].append('c')  #修改对象a中的['a', 'b']数组对象
 
-print 'a = ', a
-print 'b = ', b
-print 'c = ', c
-print 'd = ', d
+print('a = ', a)
+print('b = ', b)
+print('c = ', c)
+print('d = ', d)
 
 输出结果：
 a =  [1, 2, 3, 4, ['a', 'b', 'c'], 5]
@@ -696,6 +617,10 @@ b =  [1, 2, 3, 4, ['a', 'b', 'c'], 5]
 c =  [1, 2, 3, 4, ['a', 'b', 'c']]
 d =  [1, 2, 3, 4, ['a', 'b']]
 ```
+
+**浅拷贝: 创建新对象，其内容是原对象的引用。**
+
+**深拷贝：和浅拷贝对应，深拷贝拷贝了对象的所有元素，包括多层嵌套的元素。深拷贝出来的对象是一个全新的对象，不再与原来的对象有任何关联。**
 
 ## 24 Python垃圾回收机制
 
@@ -1315,7 +1240,7 @@ list(set(l))
 ```python
 l1 = ['b','c','d','b','c','a','a']
 l2 = {}.fromkeys(l1).keys()
-print l2
+print(l2)
 ```
 
 用字典并保持顺序
@@ -1324,7 +1249,7 @@ print l2
 l1 = ['b','c','d','b','c','a','a']
 l2 = list(set(l1))
 l2.sort(key=l1.index)
-print l2
+print(l2)
 ```
 
 列表推导式
@@ -1430,7 +1355,7 @@ def recursion_merge_sort2(l1, l2):
 再把旧列表加到新列表后面
 
 
-```pyhton
+```python
 def loop_merge_sort(l1, l2):
     tmp = []
     while len(l1) > 0 and len(l2) > 0:
@@ -1583,7 +1508,7 @@ def binary_search(list, item):
             return mid
     return None
 mylist = [1,3,5,7,9]
-print binary_search(mylist, 3)
+print(binary_search(mylist, 3))
 
 ```
 
@@ -1603,7 +1528,7 @@ def quicksort(list):
         finallylist = quicksort(lessbeforemidpivot)+[midpivot]+quicksort(biggerafterpivot)
         return finallylist
 
-print quicksort([2,4,6,7,1,2,5])
+print(quicksort([2,4,6,7,1,2,5]))
 ```
 
 
@@ -1632,7 +1557,7 @@ def coinChange(values,valuesCounts,money,coinsUsed):
                 if (temp < minCoins):
                     minCoins = temp
         coinsUsed[cents] = minCoins
-        print ('面值:{0}的最少硬币使用数为:{1}'.format(cents, coinsUsed[cents]))
+        print('面值:{0}的最少硬币使用数为:{1}'.format(cents, coinsUsed[cents]))
 
 ```
 
@@ -1678,7 +1603,7 @@ def lookup(root):
 def deep(root):
     if not root:
         return
-    print root.data
+    print(root.data)
     deep(root.left)
     deep(root.right)
 
@@ -1728,7 +1653,7 @@ def post_trvelsal(root):
         post_trvelsal(root.left)
     if root.right is not None:
         post_trvelsal(root.right)
-    print (root.value)
+    print(root.value)
 
 ```
 
@@ -1772,7 +1697,7 @@ def deep(root):
         return
     deep(root.left)
     deep(root.right)
-    print root.data
+    print(root.data)
 ```
 
 ## 21 单链表逆置
@@ -1798,7 +1723,7 @@ def rev(link):
 
 root = rev(link)
 while root:
-    print root.data
+    print(root.data)
     root = root.next
 ```
 
@@ -1894,5 +1819,4 @@ class Anagram:
 ## 23 动态规划问题
 
 >  可参考：[动态规划(DP)的整理-Python描述](http://blog.csdn.net/mrlevo520/article/details/75676160)
-
 

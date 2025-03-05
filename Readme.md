@@ -946,10 +946,7 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 
 ## 2 数据库索引
 
-推荐: http://tech.meituan.com/mysql-index.html
-
-[MySQL索引背后的数据结构及算法原理](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
-
+推荐: https://zhuanlan.zhihu.com/p/113917726
 聚集索引,非聚集索引,B-Tree,B+Tree,最左前缀原理
 
 ## 3 Redis原理
